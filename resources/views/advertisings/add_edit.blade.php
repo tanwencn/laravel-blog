@@ -291,7 +291,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Url:</label>
-                                <input type="text" name="links[{{ $key }}][url]" class="form-control input-sm @isset($link->invalid) invalid @endisset" {{ $link->hasLinkable()?'disabled':'' }} value="{{ $link->hasLinkable()?Admin::getMenuSideNames($link->linkable_type).'('. $link->linkable->title .')':$link->url }}">
+                                <input type="text" name="links[{{ $key }}][url]" class="form-control input-sm @isset($link->invalid) invalid @endisset" {{ $link->hasLinkable()?'disabled':'' }} value="{{ $link->hasLinkable()?Admin::side()->names($link->linkable_type).'('. $link->linkable->title .')':$link->url }}">
                             </div>
                             <a href="javascript:void(0);" class="tree_branch_delete"><i class="fa fa-trash"></i></a>
                         </div>

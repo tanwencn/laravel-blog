@@ -18,11 +18,13 @@ class MenuController extends Controller
         return $this->_form(new $this->model);
     }
 
-    public function store(){
+    public function store()
+    {
         return $this->save(new $this->model);
     }
 
-    public function update($id){
+    public function update($id)
+    {
         return $this->save($this->model::findOrFail($id));
     }
 
@@ -65,9 +67,7 @@ class MenuController extends Controller
             $this->hasInvalid($all_model->links, $invalid);
         }
 
-        $view = $this->_form($all_model);
-
-        return $invalid ? $view->withErrors(trans('admin.invalid_prompt')) : $view;
+        return $this->_form($all_model)->with('invalid', $invalid);
     }
 
     protected function hasInvalid($collect, $invalid)

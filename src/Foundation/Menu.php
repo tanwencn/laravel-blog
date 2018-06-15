@@ -19,10 +19,10 @@ class Menu
 
     private $uri_prefix;
 
-    public function __construct(AuthManager $auth, $uri_prefix)
+    public function __construct(AuthManager $auth)
     {
         $this->auth = $auth;
-        $this->uri_prefix = $uri_prefix;
+        $this->uri_prefix = config('admin.route.prefix', 'admin');
     }
 
     public function define($name, $parameters = [], $parent = null)
@@ -62,7 +62,7 @@ class Menu
             $user = $this->auth->user();
             $authority = array_get($val, 'authority');
 
-            return !empty($val['name']) && (!$authority || $user->hasRole('superadmin') || $user->hasPermissionTo($authority));
+            return !empty($val['name']) && (!$authority || $user->can($authority));
 
         });
     }

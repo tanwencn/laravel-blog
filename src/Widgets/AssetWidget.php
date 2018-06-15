@@ -23,6 +23,6 @@ class AssetWidget extends AbstractWidget
     {
         $is_file = $this->config['is_file'];
 
-        return view('tanwencms::admin.widgets.asset', compact('type', 'content', 'is_file'));
+        return view('admin::widgets.asset', compact('type', 'content', 'is_file'));
     }
 }

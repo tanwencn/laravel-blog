@@ -17,10 +17,8 @@ trait Authorizes
 
     public function callAction($method, $parameters)
     {
-        if (!Auth::user()->hasRole('superadmin')) {
-            if ($ability = $this->getAbility($method)) {
-                $this->authorize($ability);
-            }
+        if ($ability = $this->getAbility($method)) {
+            $this->authorize($ability);
         }
 
         return parent::callAction($method, $parameters);
@@ -38,7 +36,7 @@ trait Authorizes
         $routeName = explode('.', str_after(request()->route()->getName(), 'admin.'));
         $action = array_get($this->abilitiesMap(), $method);
 
-        return $action ? $action . '_' . str_singular($routeName[0]) : null;
+        return $action ? $action . '_' . str_singular($routeName[0]) : str_singular($routeName[0]);
     }
 
     /**

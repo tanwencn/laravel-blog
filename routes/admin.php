@@ -36,13 +36,13 @@ Route::prefix(config('admin.route.prefix', 'admin'))->group(function ($router) {
 
             $router->get('options/general', 'OptionController@general')->name('admin.option.general');
 
-            $router->post('options/store', 'OptionController@store')->name('admin.option.store');
+            $router->post('options/general', 'OptionController@general_store');
 
 
         });
 
         if (file_exists(base_path('routes/admin.php'))) {
-            $router->namespace(config('admin.route.namespace'))->group(base_path('routes/admin.php'));
+            $router->group(base_path('routes/admin.php'));
         }
 
     });

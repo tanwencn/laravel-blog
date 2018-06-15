@@ -27,7 +27,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware(function($request, $next){
-            if(Auth::check() && Auth::user()->hasPermissionTo('view_dashboard')){
+            if(Auth::check() && Auth::user()->can('dashboard')){
                 return redirect($this->redirectPath());
             }
             return $next($request);

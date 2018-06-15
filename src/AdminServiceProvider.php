@@ -8,9 +8,11 @@
 
 namespace Tanwencn\Blog;
 
+use Illuminate\Contracts\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Access\Gate;
+
 use Illuminate\Support\ServiceProvider;
 use Tanwencn\Blog\Foundation\Admin;
-use Tanwencn\Blog\Foundation\AdminHelper;
 use Tanwencn\Blog\Http\Middleware;
 use Tanwencn\Blog\Database\Eloquent;
 use Tanwencn\Blog\Widgets\DashboardLeftWidget;
@@ -28,11 +30,11 @@ class AdminServiceProvider extends ServiceProvider
         'admin' => [
             'web',
             Middleware\Authenticate::class,
-            Middleware\FilterIfPjax::class
+            //Middleware\FilterIfPjax::class
         ]
     ];
 
-    public function boot()
+    public function boot(Gate $gate)
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/admin.php');
         
@@ -41,6 +43,12 @@ class AdminServiceProvider extends ServiceProvider
         /*Relation::morphMap([
             Page::class => Page2::class
         ]);*/
+
+        $gate->before(function (Authorizable $user) {
+            if (method_exists($user, 'hasRole')) {
+                return $user->hasRole('superadmin') ?: null;
+            }
+        });
         
         $this->registerMenus();
 
@@ -63,6 +71,9 @@ class AdminServiceProvider extends ServiceProvider
     protected function registerRouteMiddleware($router)
     {
         foreach ($this->middlewareGroups as $key => $middleware) {
+            if($key == 'admin' && config('admin.pjax', true)){
+                $middleware[] = Middleware\FilterIfPjax::class;
+            }
             $router->middlewareGroup($key, $middleware);
         }
 
@@ -76,7 +87,7 @@ class AdminServiceProvider extends ServiceProvider
         \Admin::menu()->define(trans('admin.dashboard'), [
             'icon' => 'fa-dashboard',
             'uri' => '/',
-            'authority' => 'view_dashboard'
+            'authority' => 'dashboard'
         ]);
         \Admin::menu()->define(trans_choice('admin.role', 0), [
             'uri' => 'roles',
@@ -135,10 +146,14 @@ class AdminServiceProvider extends ServiceProvider
     }
 
     protected function registerWidgets(){
-        /*Admin::addMenuSide(trans('admin.page'), Models\Page::class, 1);
-        Admin::addMenuSide(trans('admin.posts_category'), Models\PostsCategory::class, 10);
-        Admin::addMenuSide(trans('admin.posts'), Models\Posts::class, 20);
-        Admin::addDashboardLeft(DashboardLeftWidget::class);
-        Admin::addDashboardRight(DashboardRightWidget::class);*/
+        \Admin::side()->add(trans('admin.page'), Eloquent\Page::class, 1);
+        \Admin::side()->add(trans('admin.posts_category'), Eloquent\PostsCategory::class, 10);
+        \Admin::side()->add(trans('admin.posts'), Eloquent\Posts::class, 20);
+
+        \Admin::dashboard()->left(DashboardLeftWidget::class);
+        \Admin::dashboard()->right(DashboardRightWidget::class);
+
+        if(config('admin.pjax', true))
+            \Admin::asset()->js('/vendor/laravel-blog/admin/pjax.js', 1);
     }
 }

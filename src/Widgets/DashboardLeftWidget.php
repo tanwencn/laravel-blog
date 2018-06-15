@@ -16,6 +16,6 @@ class DashboardLeftWidget extends AbstractWidget
     {
         $posts_count = Posts::count();
         $pages_count = Page::count();
-        return view('tanwencms::admin.widgets.dashboard_left', compact('posts_count', 'pages_count'));
+        return view('admin::widgets.dashboard_left', compact('posts_count', 'pages_count'));
     }
 }

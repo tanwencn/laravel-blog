@@ -33,7 +33,7 @@
 
         <script>
             $(function () {
-                tanwencms.init();
+                Blog.init();
                 currentMenu('{{ url()->current() }}');
 
                 toastr.clear();

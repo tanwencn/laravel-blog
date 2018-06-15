@@ -11,66 +11,22 @@ namespace Tanwencn\Blog\Foundation;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Routing\Router;
+use BadMethodCallException;
 
 class Admin
 {
-    private $menu;
 
     private $config;
 
     private $auth;
 
-    private $menuSideNames;
+    private $instances;
 
     public function __construct(Repository $config, AuthManager $auth, Router $router)
     {
         $this->config = $config;
         $this->auth = $auth;
         $this->router = $router;
-    }
-
-    public function addDashboardLeft($widget, $config = [], $position = 100)
-    {
-        Widget::group('admin_dashboard_left')->position($position)->addWidget($widget, $config);
-    }
-
-    public function addDashboardRight($widget, $config = [], $position = 100)
-    {
-        Widget::group('admin_dashboard_right')->position($position)->addWidget($widget, $config);
-    }
-
-    public function addCss($content, $position = 100, $is_file = true)
-    {
-        Widget::group('admin_css')->position($position)->addWidget(AssetWidget::class, ['is_file' => $is_file], 'css', $content);
-    }
-
-    public function addJs($content, $position = 100, $is_file = true)
-    {
-        Widget::group('admin_js')->position($position)->addWidget(AssetWidget::class, ['is_file' => $is_file], 'js', $content);
-    }
-
-    public function addMenuSide($title, $class, $position = 100, $option = [])
-    {
-        $this->menuSideNames[$class] = $title;
-        Widget::group('admin_menu_sides')->position($position)->addWidget(MenuSideWidget::class, $option, $title, $class);
-    }
-
-    public function getMenuSideNames($class = null)
-    {
-        if (is_null($class)) {
-            return $this->menuSideNames;
-        } else {
-            return isset($this->menuSideNames[$class]) ? $this->menuSideNames[$class] : null;
-        }
-    }
-
-    public function menu()
-    {
-        if (is_null($this->menu)) {
-            $this->menu = new Menu($this->auth, $this->config->get('admin.route.prefix', 'admin'));
-        }
-
-        return $this->menu;
     }
 
     public function action($action, $parms = [])
@@ -90,5 +46,19 @@ class Admin
     public function view($view = null, $data = [], $mergData = [])
     {
         return view("admin::{$view}", $data, $mergData);
+    }
+
+    public function __call($name, $arguments)
+    {
+        $class = str_start(__NAMESPACE__ . str_start(studly_case($name), '\\'), '\\');
+
+        if (isset($this->instances[$class])) return $this->instances[$class];
+
+        if (class_exists($class)) {
+            $this->instances[$class] = app($class);
+            return $this->instances[$class];
+        }
+
+        throw new BadMethodCallException("Method {$name} does not exist.");
     }
 }

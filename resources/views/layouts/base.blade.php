@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{ asset('/vendor/laravel-blog/bootstrap-duallistbox/css/bootstrap-duallistbox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/laravel-blog/bootstrap3-editable/css/bootstrap-editable.css') }}">
 
-    {{ Widget::group('admin_css')->display() }}
+    {!! Admin::asset()->css() !!}
 
     <!-- app -->
     <link rel="stylesheet" href="{{ asset('/vendor/laravel-blog/admin/app.min.css') }}">
@@ -183,14 +183,14 @@
 
 <script src="{{ asset('vendor/laravel-blog/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
 
-{{ Widget::group('admin_js')->display() }}
-
 <!-- elfinder -->
 <script src="{{ asset('vendor/laravel-blog/jquery-ui/ui/minified/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('vendor/laravel-blog/elfinder/js/elfinder.min.js') }}"></script>
 <!-- elfinder -->
 
-<script src="{{ asset('/vendor/laravel-blog/admin/app.min.js') }}"></script>
+<script src="{{ asset('/vendor/laravel-blog/admin/app.js') }}"></script>
+
+{!! Admin::asset()->js() !!}
 
 <script>
     var timeout_load = '{{ trans('admin.timeout_load') }}';

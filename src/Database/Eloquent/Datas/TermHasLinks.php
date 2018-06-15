@@ -6,16 +6,34 @@
  * 时间: 2018/3/14 16:59
  */
 
-namespace Tanwencn\Blog\Database\Eloquent\Concerns;
+namespace Tanwencn\Blog\Database\Eloquent\Datas;
 
 
 use Illuminate\Support\Collection;
-use Tanwencn\Blog\Database\Eloquent\Datas\Terms;
 use Tanwencn\Blog\Database\Eloquent\Link;
 
-trait HasLinks
+trait TermHasLinks
 {
     use Terms;
+
+    protected static function bootTermHasLinks()
+    {
+        static::deleting(function ($model) {
+            if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
+                return;
+            }
+
+            $results = $model->morphMany(Link::class, 'linkable')->get();
+
+            foreach ($results as $link) {
+                $link->delete();
+            }
+
+            foreach ($model->links as $link) {
+                $link->delete();
+            }
+        });
+    }
 
     public function links()
     {
@@ -30,6 +48,6 @@ trait HasLinks
             else
                 return $query->where('parent_id', 0);
         }])->select(['id', 'title', 'slug'])->where('slug', ucfirst($slug))->first();
-        return $model?$model->links:new Collection();
+        return $model ? $model->links : new Collection();
     }
 }

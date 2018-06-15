@@ -35,9 +35,9 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        $current_abilities = old('permissions', $model->permissions->pluck('id')->toArray());
+        $current_permissions = old('permissions', $model->permissions->pluck('id')->toArray());
 
-        return $this->view('add_edit', compact('model', 'permissions', 'current_abilities'));
+        return $this->view('add_edit', compact('model', 'permissions', 'current_permissions'));
     }
 
     public function edit($id)

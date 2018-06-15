@@ -6,11 +6,10 @@ return [
      * Route configuration.
      */
     'route' => [
-
-        'prefix' => 'admin',
-
-        'namespace' => 'App\\Admin\\Controllers'
+        'prefix' => 'admin'
     ],
+
+    'pjax' => true,
 
     /*
      * Laravel-admin upload setting.
@@ -22,7 +21,7 @@ return [
             'uploadOverwrite' => false,
             'tmbURL' => '/.tmb',
             'uploadAllow' => ['image'],
-            'uploadOrder'  => ['allow'],
+            'uploadOrder' => ['allow'],
             'uploadMaxSize' => '5M',
             'URL' => '/storage'
         ]

@@ -16,6 +16,6 @@ class DashboardRightWidget extends AbstractWidget
     {
         $users_count = User::count();
         $comments_count = Comment::count();
-        return view('tanwencms::admin.widgets.dashboard_right', compact('users_count', 'comments_count'));
+        return view('admin::widgets.dashboard_right', compact('users_count', 'comments_count'));
     }
 }

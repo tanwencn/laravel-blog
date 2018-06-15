@@ -40,9 +40,7 @@ class Authenticate
         if (!$this->auth->check())
             return redirect()->guest(route('admin.login'));
 
-        if (!$this->auth->user()->hasRole('superadmin')) {
-            app(Gate::class)->authorize('view_dashboard');
-        }
+        app(Gate::class)->authorize('dashboard');
 
         return $next($request);
     }

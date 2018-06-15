@@ -53,7 +53,7 @@ $(function () {
     });
 
     NProgress.done();
-    tanwencms.init();
+    Blog.init();
 
 });
 

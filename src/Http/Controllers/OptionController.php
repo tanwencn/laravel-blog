@@ -2,24 +2,26 @@
 
 namespace Tanwencn\Blog\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 use Tanwencn\Blog\Database\Eloquent\Option;
+use Tanwencn\Blog\Facades\Admin;
 
 class OptionController extends Controller
 {
+    use AuthorizesRequests;
 
     public function general()
     {
-        if (!Auth::user()->hasRole('superadmin'))
-            $this->authorize('general_settings');
+        $this->authorize('general_settings');
 
-        $this->setPageTitle(trans('admin.general_settings'));
-        return $this->view('options.general');
+        return Admin::view('options.general');
     }
 
-    public function store()
+    public function general_store()
     {
+        $this->authorize('general_settings');
+
         $options = request('options');
 
         foreach ($options as $name => $option) {

@@ -1,9 +1,14 @@
+@extends('admin::layouts.app')
+
+@section('title', trans('admin.general_settings'))
+
+@section('content')
 <style>
     .form-horizontal input[type="text"] {
         width: 400px;
     }
 </style>
-<form method="POST" action="{{ route('admin.option.store') }}" class="form-horizontal">
+<form method="POST" action="{{ url()->current() }}" class="form-horizontal">
 <div class="box box-default">
     <div class="box-header"></div>
     <div class="box-body">
@@ -69,3 +74,4 @@
         });
     });
 </script>
+@endsection

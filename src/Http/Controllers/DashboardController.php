@@ -8,9 +8,14 @@ class DashboardController extends Controller
 {
 
     public function index(){
-        //$this->setPageTitle(trans('admin.dashboard'));
-        //$this->setPageDesc(trans('admin.control_panel'));
         return Admin::view('dashboard.index');
+    }
+
+    protected function abilitiesMap()
+    {
+        return [
+            'index' => null
+        ];
     }
 
 

@@ -155,6 +155,11 @@
     </div>
 
     <div class="menu-main">
+        @if($invalid)
+        <div class="callout callout-danger">
+            <p>{{ trans('admin.invalid_prompt') }}</p>
+        </div>
+        @endif
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingTwo">
                 <form method="post" data-pjax="true"
@@ -209,7 +214,7 @@
                                 <ol class="dd-list">,</ol>)
                             @endif
                         </li>
-                        @endrecursive(Admin::getMenuSideNames())
+                        @endrecursive(Admin::side()->names())
                     </ol>
                 </div>
 
