@@ -90,9 +90,9 @@
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                {{--<div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>--}}
+                                <div class="pull-left">
+                                    <a href="{{ route('admin.users.edit', Auth::id()) }}" class="btn btn-default btn-flat">{{ trans('admin.edit_profile') }}</a>
+                                </div>
                                 <div class="pull-right">
                                     <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">{{ trans('admin.logout') }}</a>
                                 </div>
@@ -188,7 +188,7 @@
 <script src="{{ asset('vendor/laravel-blog/elfinder/js/elfinder.min.js') }}"></script>
 <!-- elfinder -->
 
-<script src="{{ asset('/vendor/laravel-blog/admin/app.js') }}"></script>
+<script src="{{ asset('/vendor/laravel-blog/admin/app.min.js') }}"></script>
 
 {!! Admin::asset()->js() !!}
 

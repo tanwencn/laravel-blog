@@ -61,21 +61,23 @@
                                         class="btn btn-default select-image"><i class="glyphicon glyphicon-folder-open"></i> {{ trans('admin.select_image') }}</button>
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('roles')?"has-error":"" }}">
+                        @role('superadmin')
+                        <div class="form-group {{ $errors->has('role')?"has-error":"" }}">
                             <label class="control-label col-md-2">{{ trans_choice('admin.role', 1) }}：</label>
                             <div class="col-md-8">
-                                @if($errors->has('roles'))
+                                @if($errors->has('role'))
                                     <label class="control-label">
-                                        <i class="fa fa-times-circle-o"></i>{{$errors->first('roles')}}
+                                        <i class="fa fa-times-circle-o"></i>{{$errors->first('role')}}
                                     </label>
                                 @endif
-                                <select name="roles[]" class="select2 form-control" multiple="multiple">
+                                <select name="role[]" class="select2 form-control" multiple="multiple">
                                     @foreach($roles as $name => $title)
-                                        <option {{ in_array($name, old('roles', $model->roles->pluck('name')->all()))?'selected':'' }} value="{{ $name }}">{{ $title }}</option>
+                                        <option {{ in_array($name, old('role', $model->roles->pluck('name')->all()))?'selected':'' }} value="{{ $name }}">{{ $title }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        @endrole
                         @if($model->id)
                         <div class="form-group">
                             <label for="password" class="col-sm-2 control-label"></label>

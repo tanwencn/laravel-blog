@@ -154,6 +154,6 @@ class AdminServiceProvider extends ServiceProvider
         \Admin::dashboard()->right(DashboardRightWidget::class);
 
         if(config('admin.pjax', true))
-            \Admin::asset()->js('/vendor/laravel-blog/admin/pjax.js', 1);
+            \Admin::asset()->js('/vendor/laravel-blog/admin/pjax.min.js', 1);
     }
 }

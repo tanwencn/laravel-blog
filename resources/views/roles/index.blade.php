@@ -16,15 +16,20 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" class="grid-batch-delete"
-                                   data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a></li>
+                            @can('delete_role')
+                            <li>
+                                <a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a>
+                            </li>
+                            @endcan
                         </ul>
                     </div>
 
+                    @can('add_role')
                     <div class="btn-group">
                         <a class="btn btn-sm btn-success" href="{{ Admin::action('create') }}"><i
                                     class="fa fa-plus f-s-12"></i> {{ trans('admin.add_role') }}</a>
                     </div>
+                    @endcan
 
                     <div class="box-tools">
                         <form id="search" action="{{ Admin::action('index') }}">
@@ -65,12 +70,16 @@
                                 <td>{{ $role->created_at }}</td>
                                 <td>{{ $role->updated_at }}</td>
                                 <td>
-                                    <a href="{{ Admin::action('edit', $role->id) }}">{{ trans('admin.edit') }}</a>&nbsp;&nbsp;&nbsp;
+                                    @can('edit_role')
+                                    <a href="{{ Admin::action('edit', $role->id) }}">{{ trans('admin.edit') }}</a> &nbsp;
+                                    @endcan
+                                    @can('delete_role')
                                     @if($role->name !='superadmin')
                                         <a href="javascript:void(0);" data-id="{{ $role->id }}"
                                            data-url="{{ request()->getPathInfo() }}"
                                            class="grid-row-delete">{{ trans('admin.delete') }}</a>
                                     @endif
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

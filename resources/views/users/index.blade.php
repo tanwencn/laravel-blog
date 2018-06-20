@@ -16,16 +16,20 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
+                            @can('delete_user')
                             <li>
                                 <a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a>
                             </li>
+                            @endcan
                         </ul>
                     </div>
 
+                    @can('add_user')
                     <div class="btn-group">
                         <a class="btn btn-sm btn-success" href="{{ Admin::action('create') }}"><i
                                     class="fa fa-plus f-s-12"></i> {{ trans('admin.add_user') }}</a>
                     </div>
+                    @endcan
 
                 <div class="box-tools">
                     <form id="search" action="{{ Admin::action('index') }}">
@@ -74,12 +78,16 @@
                             <td>{{ $user->created_at }}</td>
                             <td>{{ $user->updated_at }}</td>
                             <td>
-                                <a href="{{ Admin::action('edit', $user) }}">{{ trans('admin.edit') }}</a>&nbsp;&nbsp;&nbsp;
+                                @can('edit_user')
+                                <a href="{{ Admin::action('edit', $user) }}">{{ trans('admin.edit') }}</a> &nbsp;
+                                @endcan
+                                @can('delete_user')
                                 @if($user->id > 1 && Auth::user()->can('delete', \Tanwencn\Blog\Database\Eloquent\User::class))
                                     <a href="javascript:void(0);" data-id="{{ $user->id }}"
                                        data-url="{{ request()->getPathInfo() }}"
                                        class="grid-row-delete">{{ trans('admin.delete') }}</a>
                                 @endif
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

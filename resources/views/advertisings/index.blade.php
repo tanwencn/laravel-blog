@@ -16,14 +16,18 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
+                        @can('delete_advertising')
                         <li><a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a></li>
+                        @endcan
                     </ul>
                 </div>
 
+                @can('add_advertising')
                 <div class="btn-group">
                     <a class="btn btn-sm btn-success" href="{{ Admin::action('create') }}"><i
                                 class="fa fa-plus f-s-12"></i> {{ trans('admin.add_advertising') }}</a>
                 </div>
+                @endcan
 
                 <div class="box-tools">
                     <form id="search" action="{{ Admin::action('index') }}">
@@ -62,8 +66,12 @@
                             <td>{{ $ad->links_count }}</td>
                             <td>{{ $ad->updated_at }}</td>
                             <td>
-                                <a href="{{ Admin::action('edit', $ad->id) }}">{{ trans('admin.edit') }}</a>&nbsp;&nbsp;&nbsp;
+                                @can('edit_advertising')
+                                <a href="{{ Admin::action('edit', $ad->id) }}">{{ trans('admin.edit') }}</a> &nbsp;
+                                @endcan
+                                @can('delete_advertising')
                                 <a href="javascript:void(0);" data-id="{{ $ad->id }}" data-url="{{ request()->getPathInfo() }}" class="grid-row-delete">{{ trans('admin.delete') }}</a>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

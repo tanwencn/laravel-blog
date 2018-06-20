@@ -4,6 +4,7 @@ namespace Tanwencn\Blog\Http\Controllers;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Tanwencn\Blog\Database\Eloquent\User;
@@ -18,7 +19,8 @@ class UserController extends Controller
     {
         $model = User::with('roles')/*->whereHas('metas', function ($query) {
             $query->where('meta_key', 'is_administrator');
-        })*/;
+        })*/
+        ;
 
         $search = $request->query('search');
         if (!empty($search)) {
@@ -48,6 +50,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        if (Auth::id() != $id)
+            $this->authorize('edit_user');
+
         $model = User::with('roles')->findOrFail($id);
 
         return $this->_form($model);
@@ -73,6 +78,9 @@ class UserController extends Controller
 
     public function update($id)
     {
+        if (Auth::id() != $id)
+            $this->authorize('edit_user');
+
         $model = User::findOrFail($id);
         return $this->save($model, [
             'email' => [
@@ -102,11 +110,14 @@ class UserController extends Controller
 
         $roles = array_filter($request->input('role'));
 
-        RelationHelper::boot($model)->save($input, function($model) use($roles){
-            $model->syncRoles($roles);
+        RelationHelper::boot($model)->save($input, function ($model) use ($roles) {
+            if (Auth::user()->hasRole('superadmin'))
+                $model->syncRoles($roles);
         });
 
-        return redirect(Admin::action('index'))->with('toastr_success', trans('admin.save_succeeded'));
+        $url = Auth::user()->can('view_user') ? Admin::action('index') : Admin::action('edit', $model->id);
+
+        return redirect($url)->with('toastr_success', trans('admin.save_succeeded'));
     }
 
     public function destroy($id)
@@ -124,4 +135,14 @@ class UserController extends Controller
             'message' => trans('admin.delete_succeeded'),
         ]);
     }
+
+    protected function abilitiesMap()
+    {
+        return array_merge(parent::abilitiesMap(), [
+            'edit' => null,
+            'update' => null,
+        ]);
+    }
+
+
 }

@@ -20,13 +20,17 @@
                         <i class="fa fa-minus-square-o"></i>&nbsp;{{ trans('admin.collapse_all') }}
                     </button>
                 </div>
+                @can('add_category')
                 <div class="btn-group">
                     <a class="btn btn-sm btn-success pull-right" href="{{ request()->getPathInfo().'/create' }}"><i class="fa fa-plus f-s-12"></i> {{ trans('admin.add_category') }}</a>
                 </div>
+                @endcan
 
+                @can('edit_category')
                 <div class="btn-group pull-right">
                     <button class="btn btn-primary btn-sm save" style="width: 120px">{{ trans('admin.save') }}</button>
                 </div>
+                @endcan
 
             </div>
             <!-- /.box-header -->
@@ -54,9 +58,11 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
+                @can('edit_category')
                 <div class="btn-group pull-right">
                     <button class="btn btn-primary btn-sm save" style="width: 120px">{{ trans('admin.save') }}</button>
                 </div>
+                @endcan
             </div>
         </div>
     </div>

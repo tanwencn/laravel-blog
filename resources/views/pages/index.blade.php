@@ -35,19 +35,27 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
+                        @can('edit_page')
                         <li><a href="javascript:void(0)" class="grid-batch-release"
                                data-value="1">{{ trans('admin.release') }}</a></li>
                         <li><a href="javascript:void(0)" class="grid-batch-release"
                                data-value="0">{{ trans('admin.draft') }}</a></li>
+                        @endcan
                         <li role="separator" class="divider"></li>
                         @if(request('trashed'))
+                            @can('edit_page')
                             <li><a href="javascript:void(0)" class="grid-batch-restore">{{ trans('admin.restore') }}</a>
                             </li>
+                            @endcan
+                            @can('delete_page')
                             <li><a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete_permanently') }}</a>
                             </li>
+                            @endcan
                         @else
+                            @can('delete_page')
                             <li><a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}" data-type="trash">{{ trans('admin.move_trash') }}</a>
                             </li>
+                            @endcan
                         @endif
                     </ul>
                 </div>
@@ -70,8 +78,10 @@
                         </label>
                     </div>
                 @endif
+                @can('add_page')
                 <a class="btn btn-sm btn-success pull-right" href="{{ Admin::action('create') }}"><i
                             class="fa fa-plus f-s-12"></i> {{ trans('admin.add_page') }}</a>
+                @endcan
             </div>
             <div class="box-body no-padding table-responsive">
                 <table class="table table-hover table-striped">
@@ -101,7 +111,9 @@
                             <td>{{ $page->title }}</td>
                             @if(!request('trashed'))
                                 <td>
-                                    <input type="checkbox" data-key="{{ $page->id }}"
+                                    <input type="checkbox"
+                                           @cannot('edit_page') readonly @endcannot
+                                           data-key="{{ $page->id }}"
                                            data-onname="{{ trans('admin.release') }}"
                                            data-offname="{{ trans('admin.draft') }}"
                                            class="grid-switch-released" {{ $page->is_release?'checked':'' }} />
@@ -110,13 +122,20 @@
                             <td>{{ $page->updated_at }}</td>
                             <td>
                                 @if(request('trashed'))
+                                    @can('edit_page')
                                     <a href="javascript:void(0);" data-id="{{ $page->id }}"
-                                       class="grid-row-restore">{{ trans('admin.restore') }}</a>&nbsp;&nbsp;&nbsp;
+                                       class="grid-row-restore">{{ trans('admin.restore') }}</a> &nbsp;
+                                    @endcan
+                                    @can('delete_page')
                                     <a href="javascript:void(0);" class="grid-row-delete" data-id="{{ $page->id }}" data-url="{{ request()->getPathInfo() }}"> {{ trans('admin.delete_permanently') }}</a>
+                                    @endcan
                                 @else
-                                    <a href="{{ Admin::action('edit', $page->id) }}">{{ trans('admin.edit') }}</a>
-                                    &nbsp;&nbsp;&nbsp;
+                                    @can('edit_page')
+                                    <a href="{{ Admin::action('edit', $page->id) }}">{{ trans('admin.edit') }}</a> &nbsp;
+                                    @endcan
+                                    @can('delete_page')
                                     <a href="javascript:void(0);" class="grid-row-delete" data-id="{{ $page->id }}" data-url="{{ request()->getPathInfo() }}" data-type="trash">{{ trans('admin.delete') }}</a>
+                                    @endcan
                                 @endif
                             </td>
                         </tr>

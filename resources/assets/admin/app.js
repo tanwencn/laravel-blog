@@ -1,8 +1,7 @@
 toastr.options = {
     progressBar: true
 };
-$.pjax.defaults.timeout = 5000;
-$.pjax.defaults.maxCacheLength = 0;
+
 NProgress.configure({parent: '#pjax-container'/*, showSpinner:false*/});
 NProgress.start();
 $(function () {
@@ -11,44 +10,6 @@ $(function () {
         NProgress.start();
     });
     $(document).ajaxStop(function () {
-        NProgress.done();
-    });
-    $(document).on('pjax:start', function () {
-        NProgress.start();
-    });
-    $(document).on('pjax:end', function () {
-        NProgress.done();
-    });
-
-    $(document).pjax('a', '#pjax-container');
-
-    $(document).on('pjax:timeout', function (event) {
-        event.preventDefault();
-        toastr.warning(timeout_load);
-        NProgress.done();
-    });
-
-    $(document).on('submit', 'form', function (event) {
-        $.pjax.submit(event, '#pjax-container');
-    });
-
-    $(document).on('pjax:send', function (xhr) {
-        if (xhr.relatedTarget && xhr.relatedTarget.tagName && xhr.relatedTarget.tagName.toLowerCase() === 'form') {
-            $submit_btn = $('form [type="submit"]');
-            if ($submit_btn) {
-                $submit_btn.attr("disabled", true);
-            }
-        }
-        NProgress.start();
-    });
-
-    $(document).on('pjax:complete', function (xhr) {
-        if (xhr.relatedTarget && xhr.relatedTarget.tagName && xhr.relatedTarget.tagName.toLowerCase() === 'form') {
-            $submit_btn = $('form [type="submit"]');
-            if ($submit_btn) {
-                $submit_btn.removeAttr("disabled");
-            }
-        }
         NProgress.done();
     });
 
@@ -69,7 +30,7 @@ function currentMenu(url) {
     }
 }
 
-var tanwencms = function () {
+var Blog = function () {
     "use strict";
     return {
         init: function () {

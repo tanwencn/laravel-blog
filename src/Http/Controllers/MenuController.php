@@ -104,4 +104,5 @@ class MenuController extends Controller
 
         return redirect(Admin::action('edit', ['id' => $model->id]))->with('toastr_success', trans('admin.save_succeeded'));
     }
+
 }
