@@ -40,8 +40,8 @@
                                data-value="1">{{ trans('admin.release') }}</a></li>
                         <li><a href="javascript:void(0)" class="grid-batch-release"
                                data-value="0">{{ trans('admin.draft') }}</a></li>
+                            <li role="separator" class="divider"></li>
                         @endcan
-                        <li role="separator" class="divider"></li>
                         @if(request('trashed'))
                             @can('edit_page')
                             <li><a href="javascript:void(0)" class="grid-batch-restore">{{ trans('admin.restore') }}</a>
@@ -204,7 +204,7 @@
                     _only: "is_release"
                 },
                 success: function (data) {
-                    $.pjax.reload('#pjax-container', {fragment: '#pjax-container'});
+                    $.pjax.reload('#pjax-container');
                     toastr.success(data.message);
                 }
             });

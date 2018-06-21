@@ -22,11 +22,11 @@ trait Contents
 {
     use HasMetas,SoftDeletes;
 
-    public function __construct()
+    public function bootIfNotBooted()
     {
         $this->setTable('contents');
         $this->fillable(['title', 'excerpt', 'description', 'is_release', 'order']);
-        parent::__construct();
+        parent::bootIfNotBooted();
     }
 
     public static function bootContents()
@@ -42,7 +42,11 @@ trait Contents
             }
 
             $model->morphMany(Link::class, 'linkable')->delete();
+
             $model->metas()->forceDelete();
+
+            if (method_exists($model, 'comments'))
+                $model->comments()->detach();
 
             if (method_exists($model, 'categories'))
                 $model->categories()->detach();

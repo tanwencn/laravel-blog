@@ -25,6 +25,8 @@ Route::prefix(config('admin.route.prefix', 'admin'))->group(function ($router) {
             $router->resource('pages', 'PageController')->names('admin.pages');
 
             $router->resource('posts', 'PostsController')->names('admin.posts');
+            
+            $router->resource('comments', 'CommentController')->names('admin.comments');
 
             $router->resource('categories', 'CategoryController')->names('admin.categories');
 
@@ -32,9 +34,9 @@ Route::prefix(config('admin.route.prefix', 'admin'))->group(function ($router) {
 
             $router->resource('menus', 'MenuController')->names('admin.menus');;
 
-            $router->resource('adv', 'AdvertisingController')->names('admin.adv');;
+            $router->resource('adv', 'AdvertisingController')->names('admin.advs');;
 
-            $router->get('options/general', 'OptionController@general')->name('admin.option.general');
+            $router->get('options/general', 'OptionController@general')->name('admin.options.general');
 
             $router->post('options/general', 'OptionController@general_store');
 

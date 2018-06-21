@@ -82,7 +82,7 @@
                                 <a href="{{ Admin::action('edit', $user) }}">{{ trans('admin.edit') }}</a> &nbsp;
                                 @endcan
                                 @can('delete_user')
-                                @if($user->id > 1 && Auth::user()->can('delete', \Tanwencn\Blog\Database\Eloquent\User::class))
+                                @if($user->id > 1 && Auth::user()->can('delete_user'))
                                     <a href="javascript:void(0);" data-id="{{ $user->id }}"
                                        data-url="{{ request()->getPathInfo() }}"
                                        class="grid-row-delete">{{ trans('admin.delete') }}</a>

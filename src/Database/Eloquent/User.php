@@ -31,6 +31,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function boot()
+    {
+        static::deleting(function ($model) {
+            if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
+                return;
+            }
+
+            $model->comments()->delete();
+            $model->metas()->delete();
+        });
+    }
+
     public function getNameAttribute($value)
     {
         return $value ?: $this->email;
@@ -49,6 +61,11 @@ class User extends Authenticatable
     public function getMorphClass()
     {
         return self::class;
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 }

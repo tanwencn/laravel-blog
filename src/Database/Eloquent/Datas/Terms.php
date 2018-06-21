@@ -14,13 +14,13 @@ trait Terms
 
     public $relation_key = 'title';
 
-    public function __construct()
+    public function bootIfNotBooted()
     {
         $this->fillable(['title', 'slug', 'parent_id']);
 
         $this->setTable('terms');
 
-        parent::__construct();
+        parent::bootIfNotBooted();
     }
 
     protected static function bootTerms()

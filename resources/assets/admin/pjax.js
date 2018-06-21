@@ -10,7 +10,7 @@ $(function () {
         NProgress.done();
     });
 
-    $(document).pjax('a', '#pjax-container');
+    $(document).pjax('a[target!=_blank]', '#pjax-container');
 
     $(document).on('pjax:timeout', function (event) {
         event.preventDefault();

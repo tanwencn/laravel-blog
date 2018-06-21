@@ -14,12 +14,12 @@ trait Metas
 {
     public $relation_key = 'meta_key';
 
-    public function __construct()
+    public function bootIfNotBooted()
     {
         $this->timestamps = false;
         $this->touches = ['base'];
         $this->fillable(['meta_key', 'meta_value']);
-        parent::__construct();
+        parent::bootIfNotBooted();
     }
 
     public function base()

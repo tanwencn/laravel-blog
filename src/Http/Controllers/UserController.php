@@ -127,7 +127,6 @@ class UserController extends Controller
             if ($id == 1) continue;
             $model = User::findOrFail($id);
             $model->delete();
-            $model->metas()->forceDelete();
         }
 
         return response([

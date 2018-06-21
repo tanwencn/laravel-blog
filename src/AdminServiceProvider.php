@@ -126,6 +126,10 @@ class AdminServiceProvider extends ServiceProvider
             'uri' => 'tags',
             'authority' => 'view_tag'
         ], $posts_title);
+        \Admin::menu()->define(trans_choice('admin.comment', 0), [
+            'uri' => 'comments',
+            'authority' => 'view_comment'
+        ], $posts_title);
 
         \Admin::menu()->define(trans_choice('admin.menu', 0), [
             'icon' => 'fa-navicon',

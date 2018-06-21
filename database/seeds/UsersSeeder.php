@@ -20,6 +20,6 @@ class UsersSeeder extends Seeder
         $user->id = 1;
         $user->save();
 
-        Bouncer::assign('superadmin')->to($user);
+        $user->assignRole('superadmin');
     }
 }
