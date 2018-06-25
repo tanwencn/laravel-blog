@@ -143,7 +143,12 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <label for="url-slug-input">{{ trans('admin.release') }}</label>
+                            <label>URL {{ trans('admin.slug') }}</label>
+                            <input type="text" name="slug" class="form-control" value="{{ old('slug', $model->slug)}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ trans('admin.release') }}</label>
                             <select name="is_release" class="form-control">
                                 <option value="0" {{ old('is_release', $model->is_release)==0?'selected':''}}>{{ trans('admin.draft') }}</option>
                                 <option value="1" {{ old('is_release', $model->is_release)!=0?'selected':''}}>{{ trans('admin.release') }}</option>
@@ -183,6 +188,7 @@
 <!-- end #content -->
 
 <script>
+
     // function to update the file selected by elfinder
     var processSelectedFileId = '';
 
@@ -208,6 +214,10 @@
 
 
     $(function () {
+
+        $('[name="title"]').keyup(function(){
+            $('[name="slug"]').val(slugify($(this).val()));
+        });
 
         $(':input[type="checkbox"]').iCheck({
             checkboxClass: 'icheckbox_minimal-red',

@@ -2,11 +2,13 @@
 
 return [
     'superadmin' => '超級管理員',
+    'edit_profile' => '修改個人信息',
     'dashboard' => '儀錶盤',
     'control_panel' => '控制面板',
     'all_abilities' => '所有許可權',
     'login' => '登錄',
     'logout' => '登出',
+    'email' => '邮箱',
     'name' => '名稱',
     'username' => '用戶名',
     'nickname' => '昵稱',
@@ -19,6 +21,8 @@ return [
         'range' => '從 :first 到 :last ，總共 :total 條',
     ],
 
+    'content' => '内容',
+    'reply' => '历史',
     'batch' => '批量處理',
     'trash' => '垃圾箱',
     'draft' => '草稿',
@@ -59,6 +63,7 @@ return [
 
     'administrator' => '管理員',
     'role' => '角色',
+    'view_role' => '查看角色',
     'add_role' => '添加角色',
     'edit_role' => '編輯角色',
     'delete_role' => '刪除角色',
@@ -83,6 +88,7 @@ return [
     'description' => '描述',
 
     'advertising' => '廣告位',
+    'view_advertising' => '查看廣告位',
     'add_advertising' => '添加廣告位',
     'edit_advertising' => '編輯廣告位',
     'delete_advertising' => '刪除廣告位',
@@ -99,8 +105,8 @@ return [
     'search_related' => '搜索相關數據',
     'search_name' => '搜索名稱',
 
-
     'menu' => '菜單',
+    'view_menu' => '查看菜單',
     'add_menu' => '添加菜單',
     'edit_menu' => '編輯菜單',
     'delete_menu' => '刪除菜單',
@@ -138,20 +144,23 @@ return [
     'delete_user' => '刪除用戶',
 
     'page' => '單頁面',
+    'view_page' => '查看頁面',
     'add_page' => '添加頁面',
     'edit_page' => '編輯頁面',
     'delete_page' => '刪除頁面',
 
-    'posts' => '文章',
-    'all_posts' => '所有文章',
-    'add_posts' => '添加文章',
-    'edit_posts' => '編輯文章',
-    'delete_posts' => '刪除文章',
-    'posts_category' => '文章分類',
-    'posts_tag' => '文章標籤',
-    'posts_name' => '文章名稱',
+    'post' => '文章',
+    'all_post' => '所有文章',
+    'view_post' => '查看文章',
+    'add_post' => '添加文章',
+    'edit_post' => '編輯文章',
+    'delete_post' => '刪除文章',
+    'post_category' => '文章分類',
+    'post_tag' => '文章標籤',
+    'post_name' => '文章名稱',
 
     'category' => '分類',
+    'view_category' => '查看分類',
     'add_category' => '添加分類',
     'edit_category' => '編輯分類',
     'delete_category' => '刪除分類',
@@ -159,7 +168,15 @@ return [
     'category_change' => '分類變更',
 
     'tag' => '標籤',
+    'view_tag' => '查看標籤',
     'add_tag' => '添加標籤',
     'edit_tag' => '編輯標籤',
     'delete_tag' => '刪除標籤',
+
+    'comment' => '評論',
+    'view_comment' => '查看評論',
+    'edit_comment' => '編輯評論',
+    'delete_comment' => '刪除評論',
+
+    'theme' => '主題'
 ];

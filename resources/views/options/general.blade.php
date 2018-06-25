@@ -4,8 +4,8 @@
 
 @section('content')
 <style>
-    .form-horizontal input[type="text"] {
-        width: 400px;
+    .form-horizontal input[type="text"],select {
+        max-width: 500px !important;
     }
 </style>
 <form method="POST" action="{{ url()->current() }}" class="form-horizontal">
@@ -41,6 +41,17 @@
                            class="form-control" id="web_logo" value="{{ old('options.web_logo', option('web_logo')) }}">
                     <button type="button" style="width: 100px; float: left;"
                             class="btn btn-default select-image"><i class="glyphicon glyphicon-folder-open"></i> {{ trans('admin.select_image') }}</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="web_url" class="col-sm-2 control-label">{{ trans('admin.theme') }}</label>
+                <div class="col-sm-10">
+                    <select name="options[theme]" class="form-control">
+                        @foreach($themes as $theme)
+                            <option value="{{ $theme->name }}" {{ old('theme', option('theme', 'default'))==$theme->name?'selected':''}}>{{ $theme->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
     </div>

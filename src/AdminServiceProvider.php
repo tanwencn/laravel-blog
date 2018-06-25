@@ -106,40 +106,40 @@ class AdminServiceProvider extends ServiceProvider
             'authority' => 'view_page'
         ]);
 
-        $posts_title = trans('admin.posts');
-        \Admin::menu()->define($posts_title, [
+        $post_title = trans_choice('admin.post', 0);
+        \Admin::menu()->define($post_title, [
             'icon' => 'fa-edit'
         ]);
-        \Admin::menu()->define(trans_choice('admin.all_posts', 0), [
+        \Admin::menu()->define(trans_choice('admin.all_post', 0), [
             'uri' => 'posts',
-            'authority' => 'view_posts'
-        ], $posts_title);
-        \Admin::menu()->define(trans_choice('admin.add_posts', 0), [
+            'authority' => 'view_post'
+        ], $post_title);
+        \Admin::menu()->define(trans_choice('admin.add_post', 0), [
             'uri' => 'posts/create',
-            'authority' => 'add_posts'
-        ], $posts_title);
+            'authority' => 'add_post'
+        ], $post_title);
         \Admin::menu()->define(trans_choice('admin.category', 0), [
             'uri' => 'categories',
             'authority' => 'view_category'
-        ], $posts_title);
+        ], $post_title);
         \Admin::menu()->define(trans_choice('admin.tag', 0), [
             'uri' => 'tags',
             'authority' => 'view_tag'
-        ], $posts_title);
+        ], $post_title);
         \Admin::menu()->define(trans_choice('admin.comment', 0), [
             'uri' => 'comments',
             'authority' => 'view_comment'
-        ], $posts_title);
+        ], $post_title);
 
         \Admin::menu()->define(trans_choice('admin.menu', 0), [
             'icon' => 'fa-navicon',
             'uri' => 'menus/create',
-            'authority' => 'view_menu'
+            'authority' => 'menu'
         ]);
         \Admin::menu()->define(trans_choice('admin.advertising', 0), [
             'icon' => 'fa-buysellads',
             'uri' => 'adv',
-            'authority' => 'view_advertising'
+            'authority' => 'view_adv'
         ]);
 
         \Admin::menu()->define(trans_choice('admin.setting', 0), [
@@ -151,8 +151,8 @@ class AdminServiceProvider extends ServiceProvider
 
     protected function registerWidgets(){
         \Admin::side()->add(trans('admin.page'), Eloquent\Page::class, 1);
-        \Admin::side()->add(trans('admin.posts_category'), Eloquent\PostsCategory::class, 10);
-        \Admin::side()->add(trans('admin.posts'), Eloquent\Posts::class, 20);
+        \Admin::side()->add(trans('admin.post_category'), Eloquent\PostCategory::class, 10);
+        \Admin::side()->add(trans('admin.post'), Eloquent\Post::class, 20);
 
         \Admin::dashboard()->left(DashboardLeftWidget::class);
         \Admin::dashboard()->right(DashboardRightWidget::class);

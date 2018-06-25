@@ -4,7 +4,7 @@ namespace Tanwencn\Blog\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Tanwencn\Blog\Database\Eloquent\Comment;
-use Tanwencn\Blog\Database\Eloquent\Posts;
+use Tanwencn\Blog\Database\Eloquent\Post;
 use Tanwencn\Blog\Http\Resources\SaveResource;
 
 class CommentController extends Controller
@@ -16,7 +16,7 @@ class CommentController extends Controller
     public function index(Request $request)
     {
         //基础数据
-        $model = $this->model::ableType(Posts::class)->with('commentable', 'user');
+        $model = $this->model::ableType(Post::class)->with('commentable', 'user');
 
         //筛选器
         $release = $request->query('release');
@@ -57,7 +57,7 @@ class CommentController extends Controller
                     continue;
                 }
 
-                $model = $this->model::ableType(Posts::class)->withUnReleased()->findOrFail($id);
+                $model = $this->model::ableType(Post::class)->withUnReleased()->findOrFail($id);
                 foreach ($input as $key => $val) {
                     $model->setAttribute($key, $val);
                 }
@@ -74,7 +74,7 @@ class CommentController extends Controller
     {
         $ids = explode(',', $id);
 
-        $models = $this->model::ableType(Posts::class)->withUnReleased()->find($ids);
+        $models = $this->model::ableType(Post::class)->withUnReleased()->find($ids);
 
         foreach ($models as $model) {
             $model->delete();

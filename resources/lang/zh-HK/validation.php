@@ -117,7 +117,9 @@ return [
     */
 
     'attributes' => [
+        'role' =>'用戶組',
         'name' => '名稱',
+        'nickname' => '用戶昵稱',
         'username' => '使用者名',
         'email' => '電郵',
         'first_name' => '名',

@@ -3,6 +3,7 @@
 namespace Tanwencn\Blog\Http\Controllers;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Tanwencn\Blog\Database\Eloquent\Menu;
 use Tanwencn\Blog\Database\RelationHelper;
@@ -102,7 +103,20 @@ class MenuController extends Controller
 
         RelationHelper::boot($model)->save();
 
-        return redirect(Admin::action('edit', ['id' => $model->id]))->with('toastr_success', trans('admin.save_succeeded'));
+        if(Auth::user()->can('edit_menu')){
+            $action = Admin::action('edit', ['id' => $model->id]);
+        }else{
+            $action = Admin::action('create');
+        }
+
+        return redirect($action)->with('toastr_success', trans('admin.save_succeeded'));
+    }
+
+    public function callAction($method, $parameters)
+    {
+        $this->authorize('menu');
+
+        return parent::callAction($method, $parameters);
     }
 
 }

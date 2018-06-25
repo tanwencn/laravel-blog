@@ -69,10 +69,9 @@ class UserController extends Controller
                 'max:255',
                 Rule::unique('users')->ignore($model->id)
             ],
-            'role' => 'required',
+            //'role' => 'required',
             'name' => 'required|string|max:255',
-            'password' => 'string|min:6|confirmed',
-            'confirmed' => 'password'
+            'password' => 'required|string|min:6|confirmed'
         ]);
     }
 
@@ -90,9 +89,9 @@ class UserController extends Controller
                 'max:255',
                 Rule::unique('users')->ignore($model->id)
             ],
-            'role' => 'required',
+            //'role' => 'required',
             'name' => 'required|string|max:255',
-            'confirmed' => 'password'
+            'password' => 'nullable|string|min:6|confirmed'
         ]);
     }
 
@@ -108,11 +107,13 @@ class UserController extends Controller
             $input['password'] = bcrypt($input['password']);
         }
 
-        $roles = array_filter($request->input('role'));
+        $roles = array_filter($request->input('role', []));
 
         RelationHelper::boot($model)->save($input, function ($model) use ($roles) {
-            if (Auth::user()->hasRole('superadmin'))
-                $model->syncRoles($roles);
+            if(!empty($roles)) {
+                if (Auth::user()->hasRole('superadmin'))
+                    $model->syncRoles($roles);
+            }
         });
 
         $url = Auth::user()->can('view_user') ? Admin::action('index') : Admin::action('edit', $model->id);

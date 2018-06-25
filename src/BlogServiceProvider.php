@@ -10,38 +10,31 @@ namespace Tanwencn\Blog;
 
 use Igaster\LaravelTheme\Facades\Theme;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Tanwencn\Blog\Consoles\InstallCommand;
+use Tanwencn\Blog\Consoles\BootPermissionsCommand;
 
 class BlogServiceProvider extends ServiceProvider
 {
 
     public function boot()
     {
-        //$this->loadRoutesFrom(__DIR__.'/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config' => config_path(),
                 __DIR__ . '/../resources/assets' => public_path('vendor/laravel-blog'),
                 __DIR__ . '/../resources/lang' => resource_path('lang'),
-                __DIR__ . '/../database/migrations' => database_path('migrations'),
-                __DIR__ . '/../database/seeds' => database_path('seeds'),
-                __DIR__ . '/../widgets' => app_path('Widgets')
+                __DIR__ . '/../database/migrations' => database_path('migrations')
             ], 'blog');
 
             $this->commands([
-                InstallCommand::class
+                InstallCommand::class,
+                BootPermissionsCommand::class
             ]);
-        } else {
-
-            //config(['app.url' => option('web_url', 'http://localhost')]);
-
-            //config(['app.name' => option('web_name', 'TanwenCms')]);
         }
 
-        Theme::set(option('themes', 'default'));
+        Theme::set(option('theme', 'default'));
 
         $this->app['view']->prependNamespace('pagination', Theme::current()->getViewPaths());
 

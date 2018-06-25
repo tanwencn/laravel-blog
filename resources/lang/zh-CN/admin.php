@@ -2,6 +2,7 @@
 
 return [
     'superadmin' => '超级管理员',
+    'edit_profile' => '修改个人信息',
     'dashboard' => '仪表盘',
     'control_panel' => '控制面板',
     'all_abilities' => '所有权限',
@@ -20,6 +21,8 @@ return [
         'range' => '从 :first 到 :last ，总共 :total 条',
     ],
 
+    'content' => '内容',
+    'reply' => '历史',
     'batch' => '批量处理',
     'trash' => '垃圾箱',
     'draft' => '草稿',
@@ -60,6 +63,7 @@ return [
 
     'administrator' => '管理员',
     'role' => '角色',
+    'view_role' => '查看角色',
     'add_role' => '添加角色',
     'edit_role' => '编辑角色',
     'delete_role' => '删除角色',
@@ -84,6 +88,7 @@ return [
     'description' => '描述',
 
     'advertising' => '广告位',
+    'view_advertising' => '查看广告位',
     'add_advertising' => '添加广告位',
     'edit_advertising' => '编辑广告位',
     'delete_advertising' => '删除广告位',
@@ -100,8 +105,8 @@ return [
     'search_related' => '搜索相关数据',
     'search_name' => '搜索名称',
 
-
     'menu' => '菜单',
+    'view_menu' => '查看菜单',
     'add_menu' => '添加菜单',
     'edit_menu' => '编辑菜单',
     'delete_menu' => '删除菜单',
@@ -134,25 +139,29 @@ return [
 
 
     'user' => '用户',
+    'view_user' => '查看用户',
     'add_user' => '添加用户',
     'edit_user' => '编辑用户',
     'delete_user' => '删除用户',
 
     'page' => '单页面',
+    'view_page' => '查看页面',
     'add_page' => '添加页面',
     'edit_page' => '编辑页面',
     'delete_page' => '删除页面',
 
-    'posts' => '文章',
-    'all_posts' => '所有文章',
-    'add_posts' => '添加文章',
-    'edit_posts' => '编辑文章',
-    'delete_posts' => '删除文章',
-    'posts_category' => '文章分类',
-    'posts_tag' => '文章标签',
-    'posts_name' => '文章名称',
+    'post' => '文章',
+    'all_post' => '所有文章',
+    'view_post' => '查看文章',
+    'add_post' => '添加文章',
+    'edit_post' => '编辑文章',
+    'delete_post' => '删除文章',
+    'post_category' => '文章分类',
+    'post_tag' => '文章标签',
+    'post_name' => '文章名称',
 
     'category' => '分类',
+    'view_category' => '查看分类',
     'add_category' => '添加分类',
     'edit_category' => '编辑分类',
     'delete_category' => '删除分类',
@@ -160,9 +169,15 @@ return [
     'category_change' => '分类变更',
 
     'tag' => '标签',
+    'view_tag' => '查看标签',
     'add_tag' => '添加标签',
     'edit_tag' => '编辑标签',
     'delete_tag' => '删除标签',
 
-    'comment' => '评论'
+    'comment' => '评论',
+    'view_comment' => '查看评论',
+    'edit_comment' => '编辑评论',
+    'delete_comment' => '删除评论',
+
+    'theme' => '主题'
 ];

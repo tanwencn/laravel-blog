@@ -4,12 +4,12 @@
         <div class="inner">
             <h3>{{ $posts_count }}</h3>
 
-            <p>{{ trans_choice('admin.posts', 1) }}</p>
+            <p>{{ trans_choice('admin.post', 1) }}</p>
         </div>
         <div class="icon">
             <i class="ion ion-bag"></i>
         </div>
-        <a href="{{ route('admin.posts.index') }}" class="small-box-footer">{{ trans('admin.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="{{ route('admin.post.index') }}" class="small-box-footer">{{ trans('admin.more') }} <i class="fa fa-arrow-circle-right"></i></a>
     </div>
 </div>
 <!-- ./col -->

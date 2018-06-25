@@ -2,6 +2,7 @@
 
 namespace Tanwencn\Blog\Http\Controllers;
 
+use Igaster\LaravelTheme\Facades\Theme;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
 use Tanwencn\Blog\Database\Eloquent\Option;
@@ -15,7 +16,9 @@ class OptionController extends Controller
     {
         $this->authorize('general_settings');
 
-        return Admin::view('options.general');
+        $themes = Theme::all();
+
+        return Admin::view('options.general', compact('themes'));
     }
 
     public function general_store()

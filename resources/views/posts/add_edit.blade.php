@@ -1,8 +1,8 @@
 @extends('admin::layouts.app')
 
-@section('title', trans('admin.'.($model->id?'edit_posts':'add_posts')))
+@section('title', trans('admin.'.($model->id?'edit_post':'add_post')))
 
-@section('breadcrumbs') <li><a href="{{ Admin::action('index') }}"> {{ trans('admin.all_posts') }}</a></li> @endsection
+@section('breadcrumbs') <li><a href="{{ Admin::action('index') }}"> {{ trans('admin.all_post') }}</a></li> @endsection
 
 @section('content')
 <style>
@@ -100,6 +100,11 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group">
+                            <label>URL {{ trans('admin.slug') }}</label>
+                            <input type="text" name="slug" class="form-control" value="{{ old('slug', $model->slug)}}">
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label">{{ trans_choice('admin.tag', 0) }}：</label>
                             <select class="select2 select-tags form-control" multiple="multiple" name="tags[]">
                                 <option value=""></option>
@@ -108,11 +113,6 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        {{--<div class="form-group">
-                            <label for="url-slug-input">Url Slug</label>
-                            <input type="text" class="form-control" id="url-slug-input" placeholder="Slug">
-                        </div>--}}
 
                         <div class="form-group">
                             <label for="url-slug-input">{{ trans('admin.release') }}</label>
@@ -130,7 +130,7 @@
                 <div class="box box-solid">
                     <!-- /.box-header -->
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{ trans_choice('admin.posts_category', 1) }}</h3>
+                        <h3 class="box-title">{{ trans_choice('admin.post_category', 1) }}</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                         class="fa fa-minus"></i></button>
@@ -235,6 +235,10 @@
 
 
     $(function () {
+
+        $('[name="title"]').keyup(function(){
+            $('[name="slug"]').val(slugify($(this).val()));
+        });
 
         $(':input[type="checkbox"]').iCheck({
             checkboxClass: 'icheckbox_minimal-red',

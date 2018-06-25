@@ -24,11 +24,13 @@ Route::prefix(config('admin.route.prefix', 'admin'))->group(function ($router) {
 
             $router->resource('pages', 'PageController')->names('admin.pages');
 
-            $router->resource('posts', 'PostsController')->names('admin.posts');
+            $router->resource('posts', 'PostController')->names('admin.post');
             
             $router->resource('comments', 'CommentController')->names('admin.comments');
 
             $router->resource('categories', 'CategoryController')->names('admin.categories');
+
+            $router->post('categories/order', 'CategoryController@order')->name('admin.categories.order');
 
             $router->resource('tags', 'TagController')->names('admin.tags');
 

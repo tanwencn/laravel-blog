@@ -1,6 +1,6 @@
 @extends('admin::layouts.app')
 
-@section('title', trans_choice('admin.add_user', 1))
+@section('title', trans_choice('admin.'.($model->id?'edit_user':'add_user'), 1))
 
 @section('breadcrumbs') <li><a href="{{ Admin::action('index') }}"> {{ trans_choice('admin.user', 1) }}</a></li> @endsection
 

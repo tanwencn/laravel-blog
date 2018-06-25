@@ -5,7 +5,7 @@ namespace Tanwencn\Blog\Database\Eloquent;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-use Tanwencn\Blog\Database\Eloquent\concerns\HasMetas;
+use Tanwencn\Blog\Database\Eloquent\Concerns\HasMetas;
 
 class User extends Authenticatable
 {

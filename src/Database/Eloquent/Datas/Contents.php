@@ -10,8 +10,8 @@ namespace Tanwencn\Blog\Database\Eloquent\Datas;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tanwencn\Blog\Database\Eloquent\Comment;
-use Tanwencn\Blog\Database\Eloquent\concerns\HasMetas;
-use Tanwencn\Blog\Database\Eloquent\ContentMeta;
+use Tanwencn\Blog\Database\Eloquent\Concerns\HasMetas;
+use Tanwencn\Blog\Database\Eloquent\Concerns\HasSlug;
 use Tanwencn\Blog\Database\Eloquent\Link;
 use Tanwencn\Blog\Database\Scopes\LatestScope;
 use Tanwencn\Blog\Database\Scopes\OldestScope;
@@ -20,12 +20,12 @@ use Tanwencn\Blog\Database\Scopes\TaxonomyScope;
 
 trait Contents
 {
-    use HasMetas,SoftDeletes;
+    use HasMetas,SoftDeletes,HasSlug;
 
     public function bootIfNotBooted()
     {
         $this->setTable('contents');
-        $this->fillable(['title', 'excerpt', 'description', 'is_release', 'order']);
+        $this->fillable(['title', 'excerpt', 'description', 'is_release', 'order', 'slug']);
         parent::bootIfNotBooted();
     }
 
@@ -55,11 +55,6 @@ trait Contents
         static::saving(function ($model) {
             $model->taxonomy = snake_case(class_basename($model));
         });
-    }
-
-    public function metas()
-    {
-        return $this->hasMany(ContentMeta::class, 'target_id');
     }
 
     public function comments()
@@ -92,7 +87,7 @@ trait Contents
 
     public function getUrlAttribute()
     {
-        return url('/'.kebab_case(class_basename($this)).'/'.$this->getKey());
+        return url('/'.kebab_case(class_basename($this)).'/'.$this->slug);
     }
 
     public static function destroy($ids)

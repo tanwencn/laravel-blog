@@ -2,14 +2,15 @@
 
 namespace Tanwencn\Blog\Http\Controllers;
 
-use Tanwencn\Blog\Database\Eloquent\PostsCategory;
+use Illuminate\Http\Request;
+use Tanwencn\Blog\Database\Eloquent\PostCategory;
 use Tanwencn\Blog\Http\Resources\DestroyResource;
 use Tanwencn\Blog\Http\Resources\SaveResource;
 
 class CategoryController extends Controller
 {
     use SaveResource, DestroyResource;
-    protected $model = PostsCategory::class;
+    protected $model = PostCategory::class;
 
     public function create()
     {
@@ -28,27 +29,29 @@ class CategoryController extends Controller
         return $this->_form($this->model::findOrFail($id));
     }
 
-    protected function _form(PostsCategory $model)
+    protected function _form(PostCategory $model)
     {
-        $data = PostsCategory::tree()->get();
+        $data = PostCategory::tree()->get();
 
         return $this->view('add_edit', compact('model', 'data'));
     }
 
     public function store()
     {
-        $request = request();
+        return $this->save(new $this->model, [
+            'title' => 'required|max:80'
+        ]);
+    }
+
+    public function order(Request $request)
+    {
         if ($request->input('_nestable')) {
             $data = json_decode($request->input('nestable', []), true);
-            PostsCategory::saveOrder($data);
+            PostCategory::saveOrder($data);
 
             return response([
                 'status' => true,
                 'message' => trans('admin.save_succeeded'),
-            ]);
-        } else {
-            return $this->save(new $this->model, [
-                'title' => 'required|max:80'
             ]);
         }
     }
@@ -59,4 +62,13 @@ class CategoryController extends Controller
             'title' => 'required|max:80'
         ]);
     }
+
+    protected function abilitiesMap()
+    {
+        return array_merge(parent::abilitiesMap(), [
+            'order' => 'edit'
+        ]);
+    }
+
+
 }

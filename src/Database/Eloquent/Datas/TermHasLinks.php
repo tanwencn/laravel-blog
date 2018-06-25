@@ -9,6 +9,7 @@
 namespace Tanwencn\Blog\Database\Eloquent\Datas;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Tanwencn\Blog\Database\Eloquent\Link;
 
@@ -40,13 +41,13 @@ trait TermHasLinks
         return $this->hasMany(Link::class, 'term_id');
     }
 
-    public static function bySlug($slug, $auto_load = true)
+    public function scopeFindBySlug(Builder $query, string $slug, bool $auto_load = true)
     {
-        $model = static::with(['links' => function ($query) use ($auto_load) {
+        $model = $query->with(['links' => function (Builder $squery) use ($auto_load) {
             if ($auto_load)
-                return $query->with('linkable')->tree();
+                return $squery->with('linkable')->tree();
             else
-                return $query->where('parent_id', 0);
+                return $squery->where('parent_id', 0);
         }])->select(['id', 'title', 'slug'])->where('slug', ucfirst($slug))->first();
         return $model ? $model->links : new Collection();
     }

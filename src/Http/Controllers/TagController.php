@@ -3,7 +3,7 @@
 namespace Tanwencn\Blog\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Tanwencn\Blog\Database\Eloquent\PostsTag;
+use Tanwencn\Blog\Database\Eloquent\PostTag;
 use Tanwencn\Blog\Http\Resources\DestroyResource;
 use Tanwencn\Blog\Http\Resources\SaveResource;
 
@@ -11,7 +11,7 @@ class TagController extends Controller
 {
     use SaveResource,DestroyResource;
 
-    protected $model = PostsTag::class;
+    protected $model = PostTag::class;
 
     public function index(Request $request)
     {
@@ -37,14 +37,14 @@ class TagController extends Controller
         return $this->_form($this->model::findOrFail($id));
     }
 
-    protected function _form(PostsTag $model)
+    protected function _form(PostTag $model)
     {
         return $this->view('add_edit', compact('model'));
     }
 
     public function store()
     {
-        return $this->save(new PostsTag(), [
+        return $this->save(new PostTag(), [
             'title' => 'required|max:80'
         ]);
     }

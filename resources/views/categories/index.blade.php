@@ -1,6 +1,6 @@
 @extends('admin::layouts.app')
 
-@section('title', trans_choice('admin.posts_category', 1))
+@section('title', trans_choice('admin.post_category', 1))
 
 @section('content')
 <div class="callout" style="background-color: #ddd !important; border-left-color: #aaa !important;">
@@ -124,7 +124,7 @@
             btn.attr("disabled", true);
             $.ajax({
                 method: 'post',
-                url: '{{ request()->getPathInfo() }}',
+                url: '{{ Admin::action('order') }}',
                 data: {
                     nestable:nestable,
                     _nestable: true,

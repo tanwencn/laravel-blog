@@ -2,6 +2,7 @@
 
 return [
     'superadmin' => 'Superadmin',
+    'edit_profile' => 'Edit Profile',
     'dashboard' => 'Dashboard',
     'control_panel' => 'Control Panel',
     'all_abilities' => 'all permissions',
@@ -20,6 +21,8 @@ return [
         'range' => 'Showing :first to :last of :total entries',
     ],
 
+    'content' => 'Content',
+    'reply' => 'Reply',
     'batch' => 'Batch',
     'trash' => 'Trash',
     'draft' => 'Draft',
@@ -31,6 +34,7 @@ return [
     'delete_permanently' => 'Delete permanently',
     'edit' => 'Edit',
     'view' => 'View',
+    'browse' => 'Browse',
     'export' => 'Export',
     'save' => 'Save',
     'order' => 'Rrder',
@@ -59,6 +63,7 @@ return [
 
     'administrator' => 'Administrator|Administrators',
     'role' => 'Role',
+    'view_role' => 'View Role',
     'add_role' => 'Add Role',
     'edit_role' => 'Edit Role',
     'delete_role' => 'Delete the role',
@@ -83,6 +88,7 @@ return [
     'description' => 'Description',
 
     'advertising' => 'Advertising',
+    'view_advertising' => 'View Advertising',
     'add_advertising' => 'Add Advertising',
     'edit_advertising' => 'Edit Advertising',
     'delete_advertising' => 'Delete Advertising',
@@ -99,8 +105,8 @@ return [
     'search_related' => 'Search related data',
     'search_name' => 'Search Name',
 
-
     'menu' => 'Menu|Menus',
+    'view_menu' => 'View Menu',
     'add_menu' => 'Add Menu',
     'edit_menu' => 'Edit Menu',
     'delete_menu' => 'Delete Menu',
@@ -133,25 +139,29 @@ return [
 
 
     'user' => 'User',
+    'view_user' => 'View User',
     'add_user' => 'Add User',
     'edit_user' => 'Edit User',
     'delete_user' => 'Delete User',
 
     'page' => 'Page|Pages',
+    'view_page' => 'View Page',
     'add_page' => 'Add Page',
     'edit_page' => 'Edit Page',
     'delete_page' => 'Delete Page',
 
-    'posts' => 'Posts',
-    'all_posts' => 'All Posts',
-    'add_posts' => 'Add Posts',
-    'edit_posts' => 'Edit Posts',
-    'delete_posts' => 'Delete Posts',
-    'posts_category' => 'Posts Category',
-    'posts_tag' => 'Posts Tag',
-    'posts_name' => 'Posts Name',
+    'post' => 'Posts|Posts',
+    'all_post' => 'All Post',
+    'view_post' => 'View Post',
+    'add_post' => 'Add Post',
+    'edit_post' => 'Edit Post',
+    'delete_post' => 'Delete Post',
+    'post_category' => 'Post Category',
+    'post_tag' => 'Post Tag',
+    'post_name' => 'Post Name',
 
     'category' => 'category|categories',
+    'view_category' => 'View Category',
     'add_category' => 'Add Category',
     'edit_category' => 'Edit Category',
     'delete_category' => 'Delete Category',
@@ -159,9 +169,15 @@ return [
     'category_change' => 'Category Change',
 
     'tag' => 'Tag|Tags',
+    'view_tag' => 'View Tag',
     'add_tag' => 'Add Tag',
     'edit_tag' => 'Edit Tag',
     'delete_tag' => 'Delete Tag',
 
-    'comment' => 'Comment|Comments'
+    'comment' => 'Comment|comments',
+    'view_comment' => 'View Comment',
+    'edit_comment' => 'Edit Comment',
+    'delete_comment' => 'Delete Comment',
+
+    'theme' => 'Theme'
 ];

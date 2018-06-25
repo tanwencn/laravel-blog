@@ -1,6 +1,6 @@
 @extends('admin::layouts.app')
 
-@section('title', trans_choice('admin.posts_tag', 1))
+@section('title', trans_choice('admin.post_tag', 1))
 
 @section('content')
 <!-- begin row -->

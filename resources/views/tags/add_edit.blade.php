@@ -2,7 +2,7 @@
 
 @section('title', $model->id?trans('admin.edit_tag'):trans('admin.add_tag'))
 
-@section('breadcrumbs') <li><a href="{{ Admin::action('index') }}"> {{ trans_choice('admin.posts_tag', 1) }}</a></li> @endsection
+@section('breadcrumbs') <li><a href="{{ Admin::action('index') }}"> {{ trans_choice('admin.post_tag', 1) }}</a></li> @endsection
 
 
 @section('content')

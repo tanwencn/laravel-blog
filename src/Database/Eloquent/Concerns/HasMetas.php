@@ -6,7 +6,7 @@
  * 时间: 2018/3/14 16:59
  */
 
-namespace Tanwencn\Blog\Database\Eloquent\concerns;
+namespace Tanwencn\Blog\Database\Eloquent\Concerns;
 
 
 trait HasMetas

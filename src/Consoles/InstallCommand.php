@@ -13,14 +13,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'tanwencms:install';
+    protected $signature = 'blog:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'install tanwencms';
+    protected $description = 'Install Blog';
 
     /**
      * Create a new command instance.
@@ -42,21 +42,8 @@ class InstallCommand extends Command
         $this->call('key:generate');
         $this->call('storage:link');
 
-        $this->call('vendor:publish', [
-            '--tag' => "tanwencms"
-        ]);
-        $this->call(' migrate:install');
-        $this->call(' db:seed');
-
-        /*retry(5, function () {
-            throw_if(config('admin.database.users_table')!='admin_users_', 'aa');
-        }, 1000);
-        var_dump(config('admin.database.users_table')=='admin_user_');
-        ;exit;*/
-
-        /*$this->call('admin:install');
-        foreach (Admin::$extensions as $key => $extension){
-            $this->call('admin:import', ['extension' => $key]);
-        }*/
+        $this->call('vendor:publish');
+        $this->call('migrate:install');
+        $this->call('blog:registerPermissions');
     }
 }

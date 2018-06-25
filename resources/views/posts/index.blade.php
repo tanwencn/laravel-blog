@@ -1,6 +1,6 @@
 @extends('admin::layouts.app')
 
-@section('title', trans_choice('admin.all_posts', 1))
+@section('title', trans_choice('admin.all_post', 1))
 
 @section('content')
     <!-- begin row -->
@@ -35,22 +35,30 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
+                            @can('edit_post')
                             <li><a href="javascript:void(0)" class="grid-batch-release"
                                    data-value="1">{{ trans('admin.release') }}</a></li>
                             <li><a href="javascript:void(0)" class="grid-batch-release"
                                    data-value="0">{{ trans('admin.draft') }}</a></li>
                             <li role="separator" class="divider"></li>
+                            @endcan
                             @if(request('trashed'))
+                                @can('edit_post')
                                 <li><a href="javascript:void(0)"
                                        class="grid-batch-restore">{{ trans('admin.restore') }}</a>
                                 </li>
+                                @endcan
+                                @can('delete_post')
                                 <li><a href="javascript:void(0)" class="grid-batch-delete"
                                        data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete_permanently') }}</a>
                                 </li>
+                                @endcan
                             @else
+                                @can('delete_post')
                                 <li><a href="javascript:void(0)" class="grid-batch-delete" data-type="trash"
                                        data-url="{{ request()->getPathInfo() }}">{{ trans('admin.move_trash') }}</a>
                                 </li>
+                                @endcan
                             @endif
                         </ul>
                     </div>
@@ -73,8 +81,10 @@
                             </label>
                         </div>
                     @endif
+                    @can('add_post')
                     <a class="btn btn-sm btn-success pull-right" href="{{ Admin::action('create') }}"><i
-                                class="fa fa-plus f-s-12"></i> {{ trans('admin.add_posts') }}</a>
+                                class="fa fa-plus f-s-12"></i> {{ trans('admin.add_post') }}</a>
+                    @endcan
                 </div>
                 <div class="box-body no-padding table-responsive">
                     <table class="table table-hover table-striped">
@@ -108,7 +118,9 @@
                                 <td>{{ $posts->tags->implode('title', ',') }}</td>
                                 @if(!request('trashed'))
                                     <td>
-                                        <input type="checkbox" data-key="{{ $posts->id }}"
+                                        <input type="checkbox"
+                                               @cannot('edit_post') readonly @endcannot
+                                               data-key="{{ $posts->id }}"
                                                data-onname="{{ trans('admin.release') }}"
                                                data-offname="{{ trans('admin.draft') }}"
                                                class="grid-switch-released" {{ $posts->is_release?'checked':'' }} />
@@ -117,16 +129,23 @@
                                 <td>{{ $posts->updated_at }}</td>
                                 <td>
                                     @if(request('trashed'))
+                                        @can('edit_post')
                                         <a href="javascript:void(0);" data-id="{{ $posts->id }}"
                                            class="grid-row-restore">{{ trans('admin.restore') }}</a>&nbsp;&nbsp;&nbsp;
+                                        @endcan
+                                        @can('delete_post')
                                         <a href="javascript:void(0);" data-id="{{ $posts->id }}" class="grid-row-delete"
                                            data-url="{{ request()->getPathInfo() }}"> {{ trans('admin.delete_permanently') }}</a>
+                                        @endcan
                                     @else
+                                        @can('edit_post')
                                         <a href="{{ Admin::action('edit', $posts->id) }}">{{ trans('admin.edit') }}</a>
-                                        &nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp; @endcan
+                                    @can('delete_post')
                                         <a href="javascript:void(0);" data-id="{{ $posts->id }}" class="grid-row-delete"
                                            data-url="{{ request()->getPathInfo() }}"
                                            data-type="trash">{{ trans('admin.delete') }}</a>
+                                        @endcan
                                     @endif
                                 </td>
                             </tr>
