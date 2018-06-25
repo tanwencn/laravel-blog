@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Tanwencn\\Cms\\": "src/"
+            "Tanwencn\\Blog\\": "src/"
         },
         "files": [
             "src/helpers.php"
