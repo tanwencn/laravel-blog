@@ -36,8 +36,8 @@
             "providers": [
                 "Tanwencn\\Blog\\BlogServiceProvider"
             ],
-            'aliases': {
-                'Admin': "Tanwencn\\Blog\\Facades\\Admin"
+            "aliases": {
+                "Admin": "Tanwencn\\Blog\\Facades\\Admin"
             }
         }
     }
