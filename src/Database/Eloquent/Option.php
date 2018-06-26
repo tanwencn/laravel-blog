@@ -8,13 +8,15 @@ class Option extends Model
     public $timestamps = false;
     protected static $_options;
 
-    public static function byName($name, $defalut = ''){
+    public static function findByName(string $name, string $defalut = ''){
         $option = &static::$_options[$name];
         if (empty($option)) {
-            $model = static::query()->where('name', $name)->select('value')->first();
-            if($model){
-                $option = $model->value;
-            }
+            try {
+                $model = static::query()->where('name', $name)->select('value')->first();
+                if ($model) {
+                    $option = $model->value;
+                }
+            }catch (\Exception $e){}
         }
         return $option?:$defalut;
     }
