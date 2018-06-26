@@ -47,10 +47,10 @@ class InstallCommand extends Command
         $this->call('vendor:publish', [
             '--provider' => BlogServiceProvider::class
         ]);
-        $this->call('vendor:publish', [
+        /*$this->call('vendor:publish', [
             '--provider' => PermissionServiceProvider::class,
             '--tag' => 'migrations'
-        ]);
+        ]);*/
         $this->call('migrate');
 
         $this->info('Attempting to set User model as parent to App\User');
