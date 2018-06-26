@@ -155,7 +155,7 @@
     </div>
 
     <div class="menu-main">
-        @if($invalid)
+        @if(isset($invalid) && $invalid)
         <div class="callout callout-danger">
             <p>{{ trans('admin.invalid_prompt') }}</p>
         </div>

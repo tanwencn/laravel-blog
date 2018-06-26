@@ -14,39 +14,39 @@
     <div class="box-body">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="web_name" class="col-sm-2 control-label">{{ trans('admin.web_name') }}</label>
-                <div class="col-sm-10">
+                <label for="web_name" class="col-sm-3 control-label">{{ trans('admin.web_name') }}</label>
+                <div class="col-sm-9">
                     <input name="options[web_name]" type="text" class="form-control" id="web_name"
                            value="{{ old('options.web_name', option('web_name')) }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="web_desc" class="col-sm-2 control-label">{{ trans('admin.web_desc') }}</label>
-                <div class="col-sm-10">
+                <label for="web_desc" class="col-sm-3 control-label">{{ trans('admin.web_desc') }}</label>
+                <div class="col-sm-9">
                     <input name="options[web_desc]" type="text" class="form-control" id="web_desc"
                            value="{{ old('options.web_name', option('web_desc')) }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="web_url" class="col-sm-2 control-label">{{ trans('admin.web_url') }}(URL)</label>
-                <div class="col-sm-10">
+                <label for="web_url" class="col-sm-3 control-label">{{ trans('admin.web_url') }}(URL)</label>
+                <div class="col-sm-9">
                     <input name="options[web_url]" type="text" class="form-control" id="web_url"
                            value="{{ old('options.web_name', option('web_url')) }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="web_url" class="col-sm-2 control-label">{{ trans('admin.web_logo') }}(Logo)</label>
-                <div class="col-sm-10">
+                <label for="web_url" class="col-sm-3 control-label">{{ trans('admin.web_logo') }}(Logo)</label>
+                <div class="col-sm-9">
                     <input readonly style="width:300px; float: left" name="options[web_logo]" type="text"
                            class="form-control" id="web_logo" value="{{ old('options.web_logo', option('web_logo')) }}">
-                    <button type="button" style="width: 100px; float: left;"
+                    <button type="button" style="width: auto; float: left;"
                             class="btn btn-default select-image"><i class="glyphicon glyphicon-folder-open"></i> {{ trans('admin.select_image') }}</button>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="web_url" class="col-sm-2 control-label">{{ trans('admin.theme') }}</label>
-                <div class="col-sm-10">
+                <label for="web_url" class="col-sm-3 control-label">{{ trans('admin.theme') }}</label>
+                <div class="col-sm-9">
                     <select name="options[theme]" class="form-control">
                         @foreach($themes as $theme)
                             <option value="{{ $theme->name }}" {{ old('theme', option('theme', 'default'))==$theme->name?'selected':''}}>{{ $theme->name }}</option>

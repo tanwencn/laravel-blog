@@ -150,9 +150,9 @@ class AdminServiceProvider extends ServiceProvider
     }
 
     protected function registerWidgets(){
-        \Admin::side()->add(trans('admin.page'), Eloquent\Page::class, 1);
-        \Admin::side()->add(trans('admin.post_category'), Eloquent\PostCategory::class, 10);
-        \Admin::side()->add(trans('admin.post'), Eloquent\Post::class, 20);
+        \Admin::side()->add(trans_choice('admin.page', 0), Eloquent\Page::class, 1);
+        \Admin::side()->add(trans_choice('admin.post_category', 0), Eloquent\PostCategory::class, 10);
+        \Admin::side()->add(trans_choice('admin.post', 0), Eloquent\Post::class, 20);
 
         \Admin::dashboard()->left(DashboardLeftWidget::class);
         \Admin::dashboard()->right(DashboardRightWidget::class);
