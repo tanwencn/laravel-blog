@@ -7,6 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+    <link rel="shortcut icon" href="{{ asset('vendor/laravel-blog/logo.png') }}" type="image/x-icon">
     <!-- elfinder -->
     <link rel="stylesheet" href="{{ asset('vendor/laravel-blog/jquery-ui/themes/base/minified/jquery-ui.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/laravel-blog/elfinder/css/elfinder.min.css') }}">
@@ -38,9 +39,9 @@
     <link rel="stylesheet" href="{{ asset('/vendor/laravel-blog/bootstrap-duallistbox/css/bootstrap-duallistbox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/laravel-blog/bootstrap3-editable/css/bootstrap-editable.css') }}">
 
-    {!! Admin::asset()->css() !!}
+{!! Admin::asset()->css() !!}
 
-    <!-- app -->
+<!-- app -->
     <link rel="stylesheet" href="{{ asset('/vendor/laravel-blog/admin/app.min.css') }}">
 
     <!-- jQuery 3 -->
@@ -147,10 +148,9 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-        reserved.
+        <strong>Made with by The <a href="https://github.com/tanwencn/laravel-blog">Tanwencn</a>.</strong>
     </footer>
 </div>
 <!-- ./wrapper -->
@@ -177,8 +177,8 @@
 <script src="{{ asset('/vendor/laravel-blog/bootstrap-duallistbox/js/jquery.bootstrap-duallistbox.min.js') }}"></script>
 <script src="{{ asset('/vendor/laravel-blog/tinymce/tinymce.min.js') }}"></script>
 @if(config('app.locale') != 'en')
-<script src="{{ asset('/vendor/laravel-blog/tinymce/langs/'. config('app.locale') .'.js') }}"></script>
-<script src="{{ asset('/vendor/laravel-blog/select2/js/i18n/'. config('app.locale') .'.js') }}"></script>
+    <script src="{{ asset('/vendor/laravel-blog/tinymce/langs/'. config('app.locale') .'.js') }}"></script>
+    <script src="{{ asset('/vendor/laravel-blog/select2/js/i18n/'. config('app.locale') .'.js') }}"></script>
 @endif
 
 <script src="{{ asset('vendor/laravel-blog/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
@@ -197,19 +197,19 @@
     var timeout_load = '{{ trans('admin.timeout_load') }}';
     var imageJconfirm;
     var elfinder_container;
-        function showImageSelector(url) {
-            elfinder_container = $.dialog({
-                title: "{{ trans('admin.select_image') }}",
-                content:"URL:/admin/elfinder/popup/" + url,
-                animation: 'scale',
-                closeAnimation: 'scale',
-                backgroundDismiss: true,
-                //theme: 'supervan',
-                columnClass:'xlarge',
-                /*onContentReady: function () {
-                    var self = this;
-                },*/
-            });
+    function showImageSelector(url) {
+        elfinder_container = $.dialog({
+            title: "{{ trans('admin.select_image') }}",
+            content:"URL:/admin/elfinder/popup/" + url,
+            animation: 'scale',
+            closeAnimation: 'scale',
+            backgroundDismiss: true,
+            //theme: 'supervan',
+            columnClass:'xlarge',
+            /*onContentReady: function () {
+                var self = this;
+            },*/
+        });
     }
 
     function listSelectedRows() {
