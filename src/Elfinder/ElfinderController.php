@@ -77,7 +77,7 @@ class ElfinderController extends Controller
     {
         $onlyMimes = config('admin.file.onlyMimes');
         $arr = explode('-', $this->app->config->get('app.locale'));
-        if($arr[1]) $arr[1] = strtoupper($arr[1]);
+        if(isset($arr[1])) $arr[1] = strtoupper($arr[1]);
         $locale = implode('_', $arr);
 
         return compact('locale', 'onlyMimes');

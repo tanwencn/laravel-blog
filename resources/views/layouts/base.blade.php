@@ -63,7 +63,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>T</b>c</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Tanwen</b>CMS</span>
+            <span class="logo-lg"><b>Tane</b>CMS</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -150,7 +150,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Made with by The <a href="https://github.com/tanwencn/laravel-blog">Tanwencn</a>.</strong>
+        <strong>Made with by The <a href="http://www.tanecn.com" target="_blank">Tanecn</a>.</strong>
     </footer>
 </div>
 <!-- ./wrapper -->

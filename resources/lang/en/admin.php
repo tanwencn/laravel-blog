@@ -160,7 +160,7 @@ return [
     'post_tag' => 'Post Tag',
     'post_name' => 'Post Name',
 
-    'category' => 'Category|Categories',
+    'category' => 'category|categories',
     'view_category' => 'View Category',
     'add_category' => 'Add Category',
     'edit_category' => 'Edit Category',
@@ -174,7 +174,7 @@ return [
     'edit_tag' => 'Edit Tag',
     'delete_tag' => 'Delete Tag',
 
-    'comment' => 'Comment|Comments',
+    'comment' => 'Comment|comments',
     'view_comment' => 'View Comment',
     'edit_comment' => 'Edit Comment',
     'delete_comment' => 'Delete Comment',
