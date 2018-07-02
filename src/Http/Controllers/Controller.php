@@ -19,4 +19,12 @@ class Controller extends \Illuminate\Routing\Controller
     {
         return Admin::view(str_plural(str_before(strtolower(class_basename(static::class)), 'controller')) . '.' . $view, $data, $mergData);
     }
+
+    public function authorize($ability, $arguments = [])
+    {
+        $ability = str_start($ability, 'admin.');
+        list($ability, $arguments) = $this->parseAbilityAndArguments($ability, $arguments);
+
+        return app(Gate::class)->authorize($ability, $arguments);
+    }
 }

@@ -9,9 +9,9 @@
 namespace Tanwencn\Blog\Database\Eloquent;
 
 
-use GeneaLabs\LaravelModelCaching\Traits\CachePrefixing;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Model extends \Illuminate\Database\Eloquent\Model
 {
-    use CachePrefixing;
+    use Cachable;
 }

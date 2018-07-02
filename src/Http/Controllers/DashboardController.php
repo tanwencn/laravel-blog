@@ -2,7 +2,6 @@
 
 namespace Tanwencn\Blog\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Tanwencn\Blog\Facades\Admin;
 
 class DashboardController extends Controller

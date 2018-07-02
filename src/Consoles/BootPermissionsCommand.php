@@ -90,7 +90,7 @@ class BootPermissionsCommand extends Command
     {
         $permissionClass = app(Permission::class);
 
-        $permissionClass::findOrCreate($name);
+        $permissionClass::findOrCreate('admin.'.$name);
     }
 
     private function abilityResources($name)

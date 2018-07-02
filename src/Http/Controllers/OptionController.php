@@ -14,7 +14,7 @@ class OptionController extends Controller
 
     public function general()
     {
-        $this->authorize('general_settings');
+        $this->authorize('admin.general_settings');
 
         $themes = Theme::all();
 
@@ -23,7 +23,7 @@ class OptionController extends Controller
 
     public function general_store()
     {
-        $this->authorize('general_settings');
+        $this->authorize('admin.general_settings');
 
         $options = request('options');
 
