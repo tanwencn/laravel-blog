@@ -86,14 +86,14 @@ class BootPermissionsCommand extends Command
         $this->info('Initialize permissions is complete');
     }
 
-    private function ability($name)
+    protected function ability($name)
     {
         $permissionClass = app(Permission::class);
 
         $permissionClass::findOrCreate('admin.'.$name);
     }
 
-    private function abilityResources($name)
+    protected function abilityResources($name)
     {
         $name = snake_case(class_basename($name));
 

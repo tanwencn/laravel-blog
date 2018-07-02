@@ -19,14 +19,29 @@ class Menu
 
     private $uri_prefix;
 
+    /**
+     * Menu constructor.
+     * @param AuthManager $auth
+     */
     public function __construct(AuthManager $auth)
     {
         $this->auth = $auth;
         $this->uri_prefix = config('admin.route.prefix', 'admin');
     }
 
-    public function define($name, $parameters = [], $parent = null)
+    /**
+     * define menu
+     * @param $name
+     * @param array $parameters
+     * @param null|array|string $parent
+     * @param null|array $children
+     */
+    public function define($name, $parameters = [], $parent = null, $children = [])
     {
+        if (is_array($parent)) {
+            $children = $parent;
+            $parent = null;
+        }
         if ($parent) {
             if (!array_has($this->items, $parent))
                 throw new InvalidArgumentException("{$parent} does not exist");
@@ -39,15 +54,24 @@ class Menu
         }
 
         array_set($this->items, $name, $parameters);
+
+        foreach ($children as $name => $child) {
+            $this->define($name, $child, $name);
+        }
     }
 
+    /**
+     * Menu parser
+     * @param $items
+     * @return static
+     */
     protected function parser($items)
     {
         return collect($items)->map(function ($val, $name) {
 
             $children = $this->parser(array_get($val, 'children'));
 
-            $url = array_get($val, 'url', array_get($val, 'uri') ? url($this->uri_prefix.'/'.array_get($val, 'uri')) : '');
+            $url = array_get($val, 'url', array_get($val, 'uri') ? url($this->uri_prefix . '/' . array_get($val, 'uri')) : '');
 
             return collect(array_merge($val, [
                 'name' => $name,
@@ -67,6 +91,10 @@ class Menu
         });
     }
 
+    /**
+     * render
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function render()
     {
         return view('admin::menu', [

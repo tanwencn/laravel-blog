@@ -2,11 +2,8 @@
 
 namespace Tanwencn\Blog\Consoles;
 
-use Encore\Admin\Admin;
 use Illuminate\Console\Command;
-use Spatie\Permission\PermissionServiceProvider;
 use Tanwencn\Blog\BlogServiceProvider;
-use Tanwencn\Blog\CmsServiceProvider;
 
 class InstallCommand extends Command
 {
