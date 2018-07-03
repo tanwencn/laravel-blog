@@ -150,7 +150,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Made with by The <a href="http://www.tanecn.com" target="_blank">Tanecn</a>.</strong>
+        <strong>Made with by The <a href="http://www.tanecn.com" target="_blank">TaneCN</a>.</strong>
     </footer>
 </div>
 <!-- ./wrapper -->
