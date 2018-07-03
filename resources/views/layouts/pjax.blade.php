@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title') &nbsp;&nbsp; {{ option('web_name') }} &#8212; TanwenCms</title>
+    <title>@yield('title') &nbsp;&nbsp; {{ option('web_name') }} &#8212; TaneCN</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

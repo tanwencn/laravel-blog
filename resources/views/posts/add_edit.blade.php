@@ -144,7 +144,7 @@
                                     <li>
                                         <label>
                                             <input name="categories[]" {{ in_array($val->id, $args[0])?"checked":'' }} value="{{ $val->id }}" data-image="{{ $val->image }}"
-                                                   data-linkable_name="{{ trans_choice('tanwencms::admin.'.snake_case(class_basename($val)), 0) }}"
+                                                   data-linkable_name="{{ trans_choice('admin.'.snake_case(class_basename($val)), 0) }}"
                                                    data-title="{{ $val->title }}" data-linkable_id="{{ $val->id }}"
                                                    data-linkable_type="{{ get_class($val) }}"
                                                    data-title="{{ $val->title }}" type="checkbox">
