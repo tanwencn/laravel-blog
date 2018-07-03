@@ -84,68 +84,78 @@ class AdminServiceProvider extends ServiceProvider
 
     protected function registerMenus()
     {
-        \Admin::menu()->define(trans('admin.dashboard'), [
+        $menu = \Admin::menu();
+        $menu->define(trans('admin.dashboard'), [
             'icon' => 'fa-dashboard',
             'uri' => '/',
-            'authority' => 'dashboard'
+            'authority' => 'dashboard',
+            'sort' => 10
         ]);
-        \Admin::menu()->define(trans_choice('admin.role', 0), [
+        $menu->define(trans_choice('admin.role', 0), [
             'uri' => 'roles',
             'icon' => 'fa-lock',
-            'authority' => 'view_role'
+            'authority' => 'view_role',
+            'sort' => 20
         ]);
-        \Admin::menu()->define(trans_choice('admin.user', 0), [
+        $menu->define(trans_choice('admin.user', 0), [
             'icon' => 'fa-user',
             'uri' => 'users',
-            'authority' => 'view_user'
+            'authority' => 'view_user',
+            'sort' => 30
         ]);
 
-        \Admin::menu()->define(trans_choice('admin.page', 0), [
+        $menu->define(trans_choice('admin.page', 0), [
             'icon' => 'fa-file-powerpoint-o',
             'uri' => 'pages',
-            'authority' => 'view_page'
+            'authority' => 'view_page',
+            'sort' => 40
         ]);
 
         $post_title = trans_choice('admin.post', 0);
-        \Admin::menu()->define($post_title, [
-            'icon' => 'fa-edit'
+        $menu->define($post_title, [
+            'icon' => 'fa-edit',
+            'sort' => 50
+        ], [
+            trans_choice('admin.all_post', 0) => [
+                'uri' => 'posts',
+                'authority' => 'view_post'
+            ],
+            trans_choice('admin.add_post', 0) => [
+                'uri' => 'posts/create',
+                'authority' => 'add_post'
+            ],
+            trans_choice('admin.category', 0) => [
+                'uri' => 'categories',
+                'authority' => 'view_category'
+            ],
+            trans_choice('admin.tag', 0) => [
+                'uri' => 'tags',
+                'authority' => 'view_tag'
+            ],
+            trans_choice('admin.comment', 0)=> [
+                'uri' => 'comments',
+                'authority' => 'view_comment'
+            ]
         ]);
-        \Admin::menu()->define(trans_choice('admin.all_post', 0), [
-            'uri' => 'posts',
-            'authority' => 'view_post'
-        ], $post_title);
-        \Admin::menu()->define(trans_choice('admin.add_post', 0), [
-            'uri' => 'posts/create',
-            'authority' => 'add_post'
-        ], $post_title);
-        \Admin::menu()->define(trans_choice('admin.category', 0), [
-            'uri' => 'categories',
-            'authority' => 'view_category'
-        ], $post_title);
-        \Admin::menu()->define(trans_choice('admin.tag', 0), [
-            'uri' => 'tags',
-            'authority' => 'view_tag'
-        ], $post_title);
-        \Admin::menu()->define(trans_choice('admin.comment', 0), [
-            'uri' => 'comments',
-            'authority' => 'view_comment'
-        ], $post_title);
-
-        \Admin::menu()->define(trans_choice('admin.menu', 0), [
+        
+        $menu->define(trans_choice('admin.menu', 0), [
             'icon' => 'fa-navicon',
             'uri' => 'menus/create',
-            'authority' => 'menu'
+            'authority' => 'menu',
+            'sort' => 60
         ]);
-        \Admin::menu()->define(trans_choice('admin.advertising', 0), [
+        $menu->define(trans_choice('admin.advertising', 0), [
             'icon' => 'fa-buysellads',
             'uri' => 'adv',
-            'authority' => 'view_adv'
+            'authority' => 'view_adv',
+            'sort' => 70
         ]);
 
-        \Admin::menu()->define(trans_choice('admin.setting', 0), [
+        $menu->define(trans_choice('admin.setting', 0), [
             'icon' => 'fa-cog',
             'uri' => 'options/general',
-            'authority' => 'general_settings'
+            'authority' => 'general_settings',
+            'sort' => 80
         ]);
     }
 

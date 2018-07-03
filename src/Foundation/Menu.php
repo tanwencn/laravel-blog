@@ -52,11 +52,12 @@ class Menu
         } else {
             if (empty($parameters['icon'])) $parameters['icon'] = '';
         }
+        if (empty($parameters['sort'])) $parameters['sort'] = 10;
 
         array_set($this->items, $name, $parameters);
 
-        foreach ($children as $name => $child) {
-            $this->define($name, $child, $name);
+        foreach ($children as $childName => $child) {
+            $this->define($childName, $child, $name);
         }
     }
 
@@ -67,7 +68,7 @@ class Menu
      */
     protected function parser($items)
     {
-        return collect($items)->map(function ($val, $name) {
+        return collect($items)->sortBy('sort')->map(function ($val, $name) {
 
             $children = $this->parser(array_get($val, 'children'));
 

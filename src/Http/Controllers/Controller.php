@@ -10,6 +10,7 @@ namespace Tanwencn\Blog\Http\Controllers;
 
 use Tanwencn\Blog\Facades\Admin;
 use Tanwencn\Blog\Http\Requests\Authorizes;
+use Illuminate\Contracts\Auth\Access\Gate;
 
 class Controller extends \Illuminate\Routing\Controller
 {
