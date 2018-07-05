@@ -1,5 +1,6 @@
 <?php
 /**
+ * http://www.tanecn.com
  * 作者: Tanwen
  * 邮箱: 361657055@qq.com
  * 所在地: 广东广州
@@ -33,7 +34,7 @@ trait Authorizes
      */
     public function getAbility($method)
     {
-        $routeName = explode('.', str_after(request()->route()->getName(), 'admin.'));
+        $routeName = explode('.', str_after(request()->route()->getName(), config('admin.route.prefix', 'admin').'.'));
         $action = array_get($this->abilitiesMap(), $method);
 
         return $action ? $action . '_' . str_singular($routeName[0]) : null;
