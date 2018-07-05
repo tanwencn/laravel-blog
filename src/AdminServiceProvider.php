@@ -16,8 +16,6 @@ use Illuminate\Support\ServiceProvider;
 use Tanwencn\Blog\Foundation\Admin;
 use Tanwencn\Blog\Http\Middleware;
 use Tanwencn\Blog\Database\Eloquent;
-use Tanwencn\Blog\Widgets\DashboardLeftWidget;
-use Tanwencn\Blog\Widgets\DashboardRightWidget;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -164,9 +162,6 @@ class AdminServiceProvider extends ServiceProvider
         \Admin::side()->add(trans_choice('admin.page', 0), Eloquent\Page::class, 1);
         \Admin::side()->add(trans_choice('admin.post_category', 0), Eloquent\PostCategory::class, 10);
         \Admin::side()->add(trans_choice('admin.post', 0), Eloquent\Post::class, 20);
-
-        \Admin::dashboard()->left(DashboardLeftWidget::class);
-        \Admin::dashboard()->right(DashboardRightWidget::class);
 
         if(config('admin.pjax', true))
             \Admin::asset()->js('/vendor/laravel-blog/admin/pjax.min.js', 1);
