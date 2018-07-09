@@ -16,6 +16,7 @@ use Illuminate\Support\ServiceProvider;
 use Tanwencn\Blog\Foundation\Admin;
 use Tanwencn\Blog\Http\Middleware;
 use Tanwencn\Blog\Database\Eloquent;
+use Tanwencn\Blog\Http\ViewComposers\BootsrapComposer;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,11 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerMenus();
 
         $this->registerWidgets();
+
+        \View::composer(
+            ['admin::*'],
+            BootsrapComposer::class
+        );
 
     }
 

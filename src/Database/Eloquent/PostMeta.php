@@ -9,10 +9,9 @@
 
 namespace Tanwencn\Blog\Database\Eloquent;
 
-use Illuminate\Database\Eloquent\Model;
 use Tanwencn\Blog\Database\Eloquent\Datas\Metas;
 
-class PostMeta extends Model
+class PostMeta extends CacheModel
 {
     use Metas;
 

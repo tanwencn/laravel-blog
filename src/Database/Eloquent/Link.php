@@ -10,10 +10,9 @@
 namespace Tanwencn\Blog\Database\Eloquent;
 
 
-use Illuminate\Database\Eloquent\Model;
 use Tanwencn\Blog\Database\Eloquent\Concerns\HasChildrens;
 
-class Link extends Model
+class Link extends CacheModel
 {
     use HasChildrens;
 

@@ -83,7 +83,7 @@ trait Contents
     }
 
     public function isAuditComment(){
-        return true;
+        return false;
     }
 
     public function getUrlAttribute()

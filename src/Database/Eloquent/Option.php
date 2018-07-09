@@ -9,7 +9,7 @@
 
 namespace Tanwencn\Blog\Database\Eloquent;
 
-class Option extends Model
+class Option extends CacheModel
 {
     protected $fillable = ['name', 'value'];
     public $timestamps = false;

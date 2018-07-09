@@ -11,7 +11,7 @@ namespace Tanwencn\Blog\Database\Eloquent;
 
 use Tanwencn\Blog\Database\Eloquent\Datas\Terms;
 
-class PostCategory extends Model
+class PostCategory extends CacheModel
 {
     use Terms;
 }

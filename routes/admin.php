@@ -24,7 +24,7 @@ Route::prefix(config('admin.route.prefix', 'admin'))->group(function ($router) {
 
             $router->resource('pages', 'PageController')->names('admin.pages');
 
-            $router->resource('posts', 'PostController')->names('admin.post');
+            $router->resource('posts', 'PostController')->names('admin.posts');
             
             $router->resource('comments', 'CommentController')->names('admin.comments');
 

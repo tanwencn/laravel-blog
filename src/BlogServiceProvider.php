@@ -37,7 +37,10 @@ class BlogServiceProvider extends ServiceProvider
 
         Theme::set(option('theme', 'default'));
 
-        $this->app['view']->prependNamespace('pagination', Theme::current()->getViewPaths());
+        $viewPaths = Theme::current()->getViewPaths();
+
+        if (isset($viewPaths[0]))
+            $this->app['view']->prependNamespace('pagination', $viewPaths[0].'/pagination');
 
         $this->registerBlades();
 

@@ -11,7 +11,7 @@ namespace Tanwencn\Blog\Database\Eloquent;
 
 use Tanwencn\Blog\Database\Eloquent\Datas\Contents;
 
-class Post extends Model
+class Post extends CacheModel
 {
     use Contents;
 

@@ -12,11 +12,14 @@ namespace Tanwencn\Blog\Database\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Tanwencn\Blog\Database\Eloquent\Concerns\HasChildrens;
 use Tanwencn\Blog\Database\Scopes\LatestScope;
 use Tanwencn\Blog\Database\Scopes\ReleaseScope;
 
 class Comment extends Model
 {
+    use HasChildrens;
+
     protected $fillable = ['parent_id', 'content'];
 
     public static function boot()

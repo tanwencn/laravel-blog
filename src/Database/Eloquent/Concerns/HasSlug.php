@@ -11,7 +11,7 @@ namespace Tanwencn\Blog\Database\Eloquent\Concerns;
 
 
 use Illuminate\Database\Eloquent\Builder;
-use Tanwencn\Blog\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 trait HasSlug
 {

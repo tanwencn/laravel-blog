@@ -11,7 +11,7 @@ namespace Tanwencn\Blog\Database\Eloquent;
 
 use Tanwencn\Blog\Database\Eloquent\Datas\TermHasLinks;
 
-class Advertising extends Model
+class Advertising extends CacheModel
 {
     use TermHasLinks;
 

@@ -9,10 +9,8 @@
 
 namespace Tanwencn\Blog\Database\Eloquent;
 
+use Illuminate\Database\Eloquent\Model;
 
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-
-class Model extends \Illuminate\Database\Eloquent\Model
+class CacheModel extends Model
 {
-    use Cachable;
 }

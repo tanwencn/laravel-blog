@@ -9,11 +9,13 @@
 
 namespace Tanwencn\Blog\Database\Eloquent\Concerns;
 
+use Illuminate\Database\Eloquent\Model;
+
 trait HasChildrens
 {
     public static function bootHasChildrens()
     {
-        static::deleting(function ($model) {
+        static::deleting(function (Model $model) {
             if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
                 return;
             }
