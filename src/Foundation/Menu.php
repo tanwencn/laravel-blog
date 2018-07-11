@@ -88,7 +88,7 @@ class Menu
             $user = $this->auth->user();
             $authority = array_get($val, 'authority');
 
-            return !empty($val['name']) && (!$authority || $user->can($authority));
+            return !empty($val['name']) && (!$authority || $user->can(str_start($authority, 'admin.')));
 
         });
     }
