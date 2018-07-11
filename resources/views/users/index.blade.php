@@ -16,7 +16,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            @can('delete_user')
+                            @can('admin.delete_user')
                             <li>
                                 <a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a>
                             </li>
@@ -24,7 +24,7 @@
                         </ul>
                     </div>
 
-                    @can('add_user')
+                    @can('admin.add_user')
                     <div class="btn-group">
                         <a class="btn btn-sm btn-success" href="{{ Admin::action('create') }}"><i
                                     class="fa fa-plus f-s-12"></i> {{ trans('admin.add_user') }}</a>
@@ -78,10 +78,10 @@
                             <td>{{ $user->created_at }}</td>
                             <td>{{ $user->updated_at }}</td>
                             <td>
-                                @can('edit_user')
+                                @can('admin.edit_user')
                                 <a href="{{ Admin::action('edit', $user) }}">{{ trans('admin.edit') }}</a> &nbsp;
                                 @endcan
-                                @can('delete_user')
+                                @can('admin.delete_user')
                                 @if($user->id > 1 && Auth::user()->can('delete_user'))
                                     <a href="javascript:void(0);" data-id="{{ $user->id }}"
                                        data-url="{{ request()->getPathInfo() }}"

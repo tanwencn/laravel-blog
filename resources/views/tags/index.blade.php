@@ -16,13 +16,13 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        @can('delete_tag')
+                        @can('admin.delete_tag')
                         <li><a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a></li>
                         @endcan
                     </ul>
                 </div>
 
-                @can('add_tag')
+                @can('admin.add_tag')
                 <div class="btn-group">
                     <a class="btn btn-sm btn-success" href="{{ Admin::action('create') }}"><i
                                 class="fa fa-plus f-s-12"></i> {{ trans('admin.add_tag') }}</a>
@@ -64,10 +64,10 @@
                             <td>{{ $tag->title }}</td>
                             <td>{{ $tag->updated_at }}</td>
                             <td>
-                                @can('edit_tag')
+                                @can('admin.edit_tag')
                                 <a href="{{ Admin::action('edit', $tag) }}">{{ trans('admin.edit') }}</a> &nbsp;
                                 @endcan
-                                @can('delete_tag')
+                                @can('admin.delete_tag')
                                 <a href="javascript:void(0);" data-id="{{ $tag->id }}" data-url="{{ request()->getPathInfo() }}" class="grid-row-delete">{{ trans('admin.delete') }}</a>
                                 @endcan
                             </td>

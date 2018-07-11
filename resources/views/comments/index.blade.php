@@ -16,14 +16,14 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            @can('edit_page')
+                            @can('admin.edit_page')
                                 <li><a href="javascript:void(0)" class="grid-batch-release"
                                        data-value="1">{{ trans('admin.release') }}</a></li>
                                 <li><a href="javascript:void(0)" class="grid-batch-release"
                                        data-value="0">{{ trans('admin.draft') }}</a></li>
                                 <li role="separator" class="divider"></li>
                             @endcan
-                            @can('delete_comment')
+                            @can('admin.delete_comment')
                                 <li>
                                     <a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a>
                                 </li>
@@ -91,7 +91,7 @@
                                 <td>{{ $model->created_at }}</td>
                                 <td>
                                     <a href="{{ $model->commentable->url }}" target="_blank">{{ trans('admin.view') }}</a> &nbsp;
-                                    @can('delete_comment')
+                                    @can('admin.delete_comment')
                                         <a href="javascript:void(0);"
                                            data-id="{{ $model->id }}"
                                            data-url="{{ request()->getPathInfo() }}"

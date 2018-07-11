@@ -35,7 +35,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        @can('edit_page')
+                        @can('admin.edit_page')
                         <li><a href="javascript:void(0)" class="grid-batch-release"
                                data-value="1">{{ trans('admin.release') }}</a></li>
                         <li><a href="javascript:void(0)" class="grid-batch-release"
@@ -43,16 +43,16 @@
                             <li role="separator" class="divider"></li>
                         @endcan
                         @if(request('trashed'))
-                            @can('edit_page')
+                            @can('admin.edit_page')
                             <li><a href="javascript:void(0)" class="grid-batch-restore">{{ trans('admin.restore') }}</a>
                             </li>
                             @endcan
-                            @can('delete_page')
+                            @can('admin.delete_page')
                             <li><a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete_permanently') }}</a>
                             </li>
                             @endcan
                         @else
-                            @can('delete_page')
+                            @can('admin.delete_page')
                             <li><a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}" data-type="trash">{{ trans('admin.move_trash') }}</a>
                             </li>
                             @endcan
@@ -78,7 +78,7 @@
                         </label>
                     </div>
                 @endif
-                @can('add_page')
+                @can('admin.add_page')
                 <a class="btn btn-sm btn-success pull-right" href="{{ Admin::action('create') }}"><i
                             class="fa fa-plus f-s-12"></i> {{ trans('admin.add_page') }}</a>
                 @endcan
@@ -122,18 +122,18 @@
                             <td>{{ $page->updated_at }}</td>
                             <td>
                                 @if(request('trashed'))
-                                    @can('edit_page')
+                                    @can('admin.edit_page')
                                     <a href="javascript:void(0);" data-id="{{ $page->id }}"
                                        class="grid-row-restore">{{ trans('admin.restore') }}</a> &nbsp;
                                     @endcan
-                                    @can('delete_page')
+                                    @can('admin.delete_page')
                                     <a href="javascript:void(0);" class="grid-row-delete" data-id="{{ $page->id }}" data-url="{{ request()->getPathInfo() }}"> {{ trans('admin.delete_permanently') }}</a>
                                     @endcan
                                 @else
-                                    @can('edit_page')
+                                    @can('admin.edit_page')
                                     <a href="{{ Admin::action('edit', $page->id) }}">{{ trans('admin.edit') }}</a> &nbsp;
                                     @endcan
-                                    @can('delete_page')
+                                    @can('admin.delete_page')
                                     <a href="javascript:void(0);" class="grid-row-delete" data-id="{{ $page->id }}" data-url="{{ request()->getPathInfo() }}" data-type="trash">{{ trans('admin.delete') }}</a>
                                     @endcan
                                 @endif

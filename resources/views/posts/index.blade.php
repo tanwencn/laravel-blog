@@ -35,7 +35,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            @can('edit_post')
+                            @can('admin.edit_post')
                             <li><a href="javascript:void(0)" class="grid-batch-release"
                                    data-value="1">{{ trans('admin.release') }}</a></li>
                             <li><a href="javascript:void(0)" class="grid-batch-release"
@@ -43,18 +43,18 @@
                             <li role="separator" class="divider"></li>
                             @endcan
                             @if(request('trashed'))
-                                @can('edit_post')
+                                @can('admin.edit_post')
                                 <li><a href="javascript:void(0)"
                                        class="grid-batch-restore">{{ trans('admin.restore') }}</a>
                                 </li>
                                 @endcan
-                                @can('delete_post')
+                                @can('admin.delete_post')
                                 <li><a href="javascript:void(0)" class="grid-batch-delete"
                                        data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete_permanently') }}</a>
                                 </li>
                                 @endcan
                             @else
-                                @can('delete_post')
+                                @can('admin.delete_post')
                                 <li><a href="javascript:void(0)" class="grid-batch-delete" data-type="trash"
                                        data-url="{{ request()->getPathInfo() }}">{{ trans('admin.move_trash') }}</a>
                                 </li>
@@ -81,7 +81,7 @@
                             </label>
                         </div>
                     @endif
-                    @can('add_post')
+                    @can('admin.add_post')
                     <a class="btn btn-sm btn-success pull-right" href="{{ Admin::action('create') }}"><i
                                 class="fa fa-plus f-s-12"></i> {{ trans('admin.add_post') }}</a>
                     @endcan
@@ -129,19 +129,19 @@
                                 <td>{{ $posts->updated_at }}</td>
                                 <td>
                                     @if(request('trashed'))
-                                        @can('edit_post')
+                                        @can('admin.edit_post')
                                         <a href="javascript:void(0);" data-id="{{ $posts->id }}"
                                            class="grid-row-restore">{{ trans('admin.restore') }}</a>&nbsp;&nbsp;&nbsp;
                                         @endcan
-                                        @can('delete_post')
+                                        @can('admin.delete_post')
                                         <a href="javascript:void(0);" data-id="{{ $posts->id }}" class="grid-row-delete"
                                            data-url="{{ request()->getPathInfo() }}"> {{ trans('admin.delete_permanently') }}</a>
                                         @endcan
                                     @else
-                                        @can('edit_post')
+                                        @can('admin.edit_post')
                                         <a href="{{ Admin::action('edit', $posts->id) }}">{{ trans('admin.edit') }}</a>
                                         &nbsp;&nbsp;&nbsp; @endcan
-                                    @can('delete_post')
+                                    @can('admin.delete_post')
                                         <a href="javascript:void(0);" data-id="{{ $posts->id }}" class="grid-row-delete"
                                            data-url="{{ request()->getPathInfo() }}"
                                            data-type="trash">{{ trans('admin.delete') }}</a>

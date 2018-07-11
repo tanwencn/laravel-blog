@@ -16,7 +16,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            @can('delete_role')
+                            @can('admin.delete_role')
                             <li>
                                 <a href="javascript:void(0)" class="grid-batch-delete" data-url="{{ request()->getPathInfo() }}">{{ trans('admin.delete') }}</a>
                             </li>
@@ -24,7 +24,7 @@
                         </ul>
                     </div>
 
-                    @can('add_role')
+                    @can('admin.add_role')
                     <div class="btn-group">
                         <a class="btn btn-sm btn-success" href="{{ Admin::action('create') }}"><i
                                     class="fa fa-plus f-s-12"></i> {{ trans('admin.add_role') }}</a>
@@ -70,10 +70,10 @@
                                 <td>{{ $role->created_at }}</td>
                                 <td>{{ $role->updated_at }}</td>
                                 <td>
-                                    @can('edit_role')
+                                    @can('admin.edit_role')
                                     <a href="{{ Admin::action('edit', $role->id) }}">{{ trans('admin.edit') }}</a> &nbsp;
                                     @endcan
-                                    @can('delete_role')
+                                    @can('admin.delete_role')
                                     @if($role->name !='superadmin')
                                         <a href="javascript:void(0);" data-id="{{ $role->id }}"
                                            data-url="{{ request()->getPathInfo() }}"

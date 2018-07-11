@@ -47,7 +47,7 @@ class Authenticate
         if (!$this->auth->check())
             return redirect()->guest(route('admin.login'));
 
-        app(Gate::class)->authorize('dashboard');
+        app(Gate::class)->authorize('admin.dashboard');
 
         return $next($request);
     }
