@@ -37,7 +37,7 @@ class RelationHelper
     {
         $fileds = $this->fileds;
         return array_filter($data, function ($val, $column) use ($fileds) {
-            return $val != false && in_array($column, $fileds);
+            return !is_null($val) && $val !== false && in_array($column, $fileds);
         }, ARRAY_FILTER_USE_BOTH);
     }
 
