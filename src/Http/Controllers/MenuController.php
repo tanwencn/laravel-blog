@@ -119,11 +119,9 @@ class MenuController extends Controller
         return redirect($action)->with('toastr_success', trans('admin.save_succeeded'));
     }
 
-    public function callAction($method, $parameters)
+    public function getAbility($method)
     {
-        $this->authorize('menu');
-
-        return parent::callAction($method, $parameters);
+        return 'admin.menu';
     }
 
 }

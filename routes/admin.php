@@ -1,6 +1,6 @@
 <?php
 
-Route::prefix(config('admin.route.prefix', 'admin'))->group(function ($router) {
+Admin::router()->group(function ($router) {
 
     $router->middleware('web')->namespace('Tanwencn\Blog\Http\Controllers')->group(function ($router) {
         $router->get('login', 'LoginController@showLoginForm')->name('admin.login');

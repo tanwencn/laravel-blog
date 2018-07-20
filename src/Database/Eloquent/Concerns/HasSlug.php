@@ -50,7 +50,7 @@ trait HasSlug
 
         $i = 1;
 
-        while ($this->otherRecordExistsWithSlug($slug)) {
+        while ($this->otherRecordExistsWithSlug($results)) {
             $results = $slug . $i++;
         }
 

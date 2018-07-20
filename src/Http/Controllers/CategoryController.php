@@ -38,7 +38,7 @@ class CategoryController extends Controller
 
     protected function _form(PostCategory $model)
     {
-        $data = PostCategory::tree()->get();
+        $data = $this->model::tree()->get();
 
         return $this->view('add_edit', compact('model', 'data'));
     }
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     {
         if ($request->input('_nestable')) {
             $data = json_decode($request->input('nestable', []), true);
-            PostCategory::saveOrder($data);
+            $this->model::saveOrder($data);
 
             return response([
                 'status' => true,

@@ -273,6 +273,17 @@
             }
         });
     }
+
+    $(function () {
+        toastr.clear();
+        @if (session('toastr_success'))
+        toastr.success('{{ session('toastr_success') }}')
+        @endisset
+
+        @foreach($errors->all() as $error)
+        toastr.error('{{ $error }}', '{{ trans('admin.failed') }}')
+        @endforeach
+    });
 </script>
 </body>
 </html>

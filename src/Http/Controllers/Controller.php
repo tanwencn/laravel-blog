@@ -19,7 +19,7 @@ class Controller extends \Illuminate\Routing\Controller
 
     protected function view($view, $data = [], $mergData = [])
     {
-        return Admin::view(str_plural(str_before(strtolower(class_basename(static::class)), 'controller')) . '.' . $view, $data, $mergData);
+        return Admin::view(str_plural(str_before(snake_case(class_basename(static::class)),'_controller')) . '.' . $view, $data, $mergData);
     }
 
     public function authorize($ability, $arguments = [])
