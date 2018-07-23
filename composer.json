@@ -20,7 +20,8 @@
         "symfony/dom-crawler": "^4.1",
         "arrilot/laravel-widgets": "^3.12",
         "igaster/laravel-theme": "^2.0",
-        "spatie/laravel-permission" : "^2.12"
+        "spatie/laravel-permission" : "^2.12",
+        "genealabs/laravel-model-caching": "^0.2.63"
     },
     "autoload": {
         "psr-4": {
