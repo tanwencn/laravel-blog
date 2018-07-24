@@ -152,7 +152,7 @@ class AdminServiceProvider extends ServiceProvider
         $menu->define(trans_choice('admin.advertising', 0), [
             'icon' => 'fa-buysellads',
             'uri' => 'adv',
-            'authority' => 'view_adv',
+            'authority' => 'view_advertising',
             'sort' => 70
         ]);
 

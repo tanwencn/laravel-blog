@@ -36,7 +36,7 @@ Admin::router()->group(function ($router) {
 
             $router->resource('menus', 'MenuController')->names('admin.menus');;
 
-            $router->resource('adv', 'AdvertisingController')->names('admin.advs');;
+            $router->resource('adv', 'AdvertisingController')->names('admin.advertisings');;
 
             $router->get('options/general', 'OptionController@general')->name('admin.options.general');
 
