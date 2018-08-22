@@ -36,24 +36,22 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
                 <div class="dd">
-                    <ol class="dd-list">
-                        @recursive($data)
-                        <li class="dd-item" data-id="{{ $val->id }}">
+                        @foreach($data->recursive() as $val)
+                            {!! str_repeat('<ol class="dd-list">', $val["start_label"]) !!}
+                        <li class="dd-item" data-id="{{ $val['id'] }}">
                             <div class="dd-handle">
                                 <span class="handle ui-sortable-handle">
                                     <i class="fa fa-ellipsis-v"></i>
                                     <i class="fa fa-ellipsis-v"></i>
                                 </span>
-                                <strong>{{ $val->title }}</strong>
+                                <strong>{{ $val['title'] }}</strong>
                                 <span class="pull-right dd-nodrag">
-                                    <a href="{{ request()->getPathInfo().'/' . $val->id .'/edit' }}"><i class="fa fa-edit"></i></a>
-                                    <a href="javascript:;" class="trash" data-id="{{ $val->id }}"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ request()->getPathInfo().'/' . $val['id'] .'/edit' }}"><i class="fa fa-edit"></i></a>
+                                    <a href="javascript:;" class="trash" data-id="{{ $val['id'] }}"><i class="fa fa-trash"></i></a>
                                 </span>
                             </div>
-                            @nextrecursive(<ol class="dd-list">, </ol>)
-                        </li>
-                        @endrecursive
-                    </ol>
+                        {!! str_repeat('</li></ol>', $val["closed_label"]) !!}
+                        @endforeach
                 </div>
             </div>
             <!-- /.box-body -->

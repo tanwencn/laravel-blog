@@ -68,7 +68,7 @@ return [
     'edit_role' => '編輯角色',
     'delete_role' => '刪除角色',
     'permissions' => '許可權',
-    'slug' => '標識',
+    'slug' => '别名',
 
     'created_at' => '創建時間',
     'updated_at' => '更新時間',

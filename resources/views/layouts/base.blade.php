@@ -186,8 +186,9 @@
 <!-- elfinder -->
 <script src="{{ asset('vendor/laravel-blog/jquery-ui/ui/minified/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('vendor/laravel-blog/elfinder/js/elfinder.min.js') }}"></script>
-<script src="{{ asset('vendor/laravel-blog/transliteration-1.6.2/lib/browser/transliteration.min.js') }}"></script>
 <!-- elfinder -->
+
+{{--<script src="{{ asset('vendor/laravel-blog/transliteration-1.6.2/lib/browser/transliteration.min.js') }}"></script>--}}
 
 <script src="{{ asset('/vendor/laravel-blog/admin/app.min.js') }}"></script>
 

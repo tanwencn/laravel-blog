@@ -100,7 +100,7 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group">
-                            <label>URL {{ trans('admin.slug') }}</label>
+                            <label>{{ trans('admin.slug') }}</label>
                             <input type="text" name="slug" class="form-control" value="{{ old('slug', $model->slug)}}">
                         </div>
 
@@ -139,24 +139,17 @@
                     <div class="box-body">
                         <div class="tab-content select-box">
                             <div role="tabpanel" class="tab-pane active" id="select_categories" style="border-top: 1px solid #ddd;">
-                                <ul>
-                                    @recursive($categories)
+                                @foreach($categories->recursive() as $val)
+                                    {!! str_repeat('<ul class="children">', $val["start_label"]) !!}
                                     <li>
                                         <label>
-                                            <input name="categories[]" {{ in_array($val->id, $args[0])?"checked":'' }} value="{{ $val->id }}" data-image="{{ $val->image }}"
-                                                   data-linkable_name="{{ trans_choice('admin.'.snake_case(class_basename($val)), 0) }}"
-                                                   data-title="{{ $val->title }}" data-linkable_id="{{ $val->id }}"
-                                                   data-linkable_type="{{ get_class($val) }}"
-                                                   data-title="{{ $val->title }}" type="checkbox">
-                                            <font>{{ $val->title }}</font>
+                                            <input name="categories[]"
+                                                   {{ in_array($val['id'], $model->categories)?"checked":'' }} value="{{ $val['id'] }}"
+                                                   type="checkbox">
+                                            <font>{{ $val['title'] }}</font>
                                         </label>
-                                        @if(!empty($val->children))
-                                            @nextrecursive(
-                                            <ul class="children">,</ul>)
-                                        @endif
-                                    </li>
-                                    @endrecursive($model->categories)
-                                </ul>
+                                    {!! str_repeat('</li></ul>', $val["closed_label"]) !!}
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -235,10 +228,6 @@
 
 
     $(function () {
-
-        $('[name="title"]').keyup(function(){
-            $('[name="slug"]').val(slugify($(this).val()));
-        });
 
         $(':input[type="checkbox"]').iCheck({
             checkboxClass: 'icheckbox_minimal-red',

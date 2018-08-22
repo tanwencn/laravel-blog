@@ -25,6 +25,6 @@ class LatestScope implements Scope
 
     public function apply(Builder $builder, Model $model)
     {
-        return $builder->latest($this->column);
+        return $builder->latest($model->getTable().'.'.$this->column);
     }
 }

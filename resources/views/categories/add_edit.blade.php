@@ -24,12 +24,10 @@
                             <div class="col-md-8">
                                 <select name="parent_id" class="form-control select2" style="width: 100%">
                                     <option value="0">{{ trans('admin.none') }}</option>
-                                    @recursive($data)
-                                    @continue(isset($args[1]) && $args[1] == $val->id)
-                                    <option {{ $val->id==old('parent_id', $args[0])?'selected':'' }} value="{{ $val->id }}">{{ str_repeat('&nbsp;', $depth*3) }}{{ $val->title }}</option>
-                                    @nextrecursive
-                                    </li>
-                                    @endrecursive($model->parent_id, $model->id)
+                                    @foreach($data->recursive() as $val)
+                                    @continue(!empty($model->id) && $model->id == $val['id'])
+                                    <option {{ $val['id']==old('parent_id', $model->parent_id)?'selected':'' }} value="{{ $val['id'] }}">{{ str_repeat('&nbsp;&nbsp;&nbsp;', $val['level']-1) }}{{ $val['title'] }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

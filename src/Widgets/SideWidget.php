@@ -10,7 +10,7 @@
 namespace Tanwencn\Blog\Widgets;
 
 use Arrilot\Widgets\AbstractWidget;
-use Tanwencn\Blog\Database\Eloquent\Concerns\HasChildrens;
+use Tanwencn\Blog\Database\Eloquent\Concerns\HasChildren;
 
 class SideWidget extends AbstractWidget
 {
@@ -21,7 +21,7 @@ class SideWidget extends AbstractWidget
      */
     public function run($name, $class)
     {
-        if(in_array(HasChildrens::class, class_uses_recursive($class, 'tree'))){
+        if(in_array(HasChildren::class, class_uses_recursive($class, 'tree'))){
             $data = $class::tree()->get();
         }else{
             $data = $class::all();

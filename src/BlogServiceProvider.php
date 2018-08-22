@@ -20,7 +20,6 @@ class BlogServiceProvider extends ServiceProvider
 
     public function boot()
     {
-
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config' => config_path(),
@@ -41,8 +40,6 @@ class BlogServiceProvider extends ServiceProvider
 
         if (isset($viewPaths[0]))
             $this->app['view']->prependNamespace('pagination', $viewPaths[0].'/pagination');
-
-        $this->registerBlades();
 
     }
 
@@ -75,6 +72,7 @@ class BlogServiceProvider extends ServiceProvider
         Blade::directive('endrecursive', function ($expression) {
             return "<?php endforeach;};\$recursive(\$recursive_data, \$depth " . ($expression ? ',' . $expression : '') . ")?>";
         });
+
     }
 
 }

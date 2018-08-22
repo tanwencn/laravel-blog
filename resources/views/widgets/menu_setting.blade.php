@@ -25,22 +25,9 @@
                     <span style="color: #a09e9e">{{ trans('admin.no_items') }}</span>
                 @else
                     <ul>
-                        @recursive($data)
-                        <li>
-                            <label>
-                                <input value="{{ $val->id }}" data-image="{{ $val->image }}"
-                                       data-linkable_name="{!! $args[0] !!}" data-title="{{ $val->title }}"
-                                       data-linkable_id="{{ $val->id }}"
-                                       data-linkable_type="{{ get_class($val) }}"
-                                       data-title="{{ $val->title }}" type="checkbox">
-                                <font>{{ $val->title }}</font>
-                            </label>
-                            @isset($val->children)
-                                @nextrecursive(
-                                <ul class="children">,</ul>)
-                            @endisset
-                        </li>
-                        @endrecursive($name)
+                        @foreach($data as $val)
+                            @include('admin::widgets.menu_setting_panel')
+                        @endforeach
                     </ul>
                 @endif
             </div>

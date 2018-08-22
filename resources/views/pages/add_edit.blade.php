@@ -143,7 +143,7 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <label>URL {{ trans('admin.slug') }}</label>
+                            <label>{{ trans('admin.slug') }}</label>
                             <input type="text" name="slug" class="form-control" value="{{ old('slug', $model->slug)}}">
                         </div>
 
@@ -214,10 +214,6 @@
 
 
     $(function () {
-
-        $('[name="title"]').keyup(function(){
-            $('[name="slug"]').val(slugify($(this).val()));
-        });
 
         $(':input[type="checkbox"]').iCheck({
             checkboxClass: 'icheckbox_minimal-red',

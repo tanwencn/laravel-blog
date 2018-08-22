@@ -10,18 +10,28 @@
 namespace Tanwencn\Blog\Database\Eloquent\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
+use Tanwencn\Blog\Database\Collection\RecursiveCollection;
 
-trait HasChildrens
+trait HasChildren
 {
-    public static function bootHasChildrens()
+    public static function bootHasChildren()
     {
+        static::registerModelEvent('init', function ($model) {
+            $model->setAppends(array_merge($model->appends, ['original']));
+        });
+
         static::deleting(function (Model $model) {
-            if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
+            if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
                 return;
             }
 
             $model->children()->forceDelete();
         });
+    }
+
+    public function newCollection(array $models = [])
+    {
+        return new RecursiveCollection($models);
     }
 
     public function parent()
@@ -34,10 +44,20 @@ trait HasChildrens
         return $this->hasMany(static::class, 'parent_id')->with('children');
     }
 
+    public function hasParent()
+    {
+        return !empty($this->parent);
+    }
+
+    public function hasChildren()
+    {
+        return empty($this->children) || $this->children->isNotEmpty();
+    }
+
     public function scopeTree($query, $parent_id = 0, $columns = [])
     {
-        if(empty($columns)){
-            $columns = $this->tree_filed?:['id', 'parent_id', 'title'];
+        if (empty($columns)) {
+            $columns = $this->tree_filed ?: ['id', 'parent_id', 'title'];
         }
 
         return $query->where('parent_id', $parent_id)->select($columns)->with(['children' => function ($query) use ($columns) {
@@ -47,7 +67,7 @@ trait HasChildrens
 
     public static function saveOrder($items, $parent_id = 0)
     {
-        foreach ($items as $key => $item){
+        foreach ($items as $key => $item) {
             $model = static::findOrFail($item['id']);
             $model->order = $key;
             $model->parent_id = $parent_id;
@@ -56,5 +76,10 @@ trait HasChildrens
             if (!empty($item['children']))
                 static::saveOrder($item['children'], $model->id);
         }
+    }
+
+    public function getOriginalAttribute()
+    {
+        return $this->getOriginal();
     }
 }

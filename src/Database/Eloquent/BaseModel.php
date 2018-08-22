@@ -12,7 +12,12 @@ namespace Tanwencn\Blog\Database\Eloquent;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 
-class CacheModel extends Model
+class BaseModel extends Model
 {
-    //use Cachable;
+    protected function bootIfNotBooted()
+    {
+        parent::bootIfNotBooted();
+
+        $this->fireModelEvent('init', false);
+    }
 }
